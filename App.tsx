@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, View, Dimensions, Platform } from "react-native";
+import { View } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 export default function App() {
   const { landscape } = useDeviceOrientation();
@@ -7,18 +6,32 @@ export default function App() {
   // console.log(Dimensions.get("screen"));
 
   return (
-    <SafeAreaView>
+    <View
+      style={{
+        width: "100%",
+        height: landscape ? "100%" : "30%",
+        backgroundColor: "#fff",
+        flex: 1,
+      }}
+    >
       <View
         style={{
           backgroundColor: "dodgerblue",
-          width: "100%",
-          height: landscape ? "100%" : "30%",
-          marginTop: Platform.OS === "android" ? 25 : 0,
+          flex: 2,
         }}
-      >
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style='auto' />
-      </View>
-    </SafeAreaView>
+      />
+      <View
+        style={{
+          backgroundColor: "gold",
+          flex: 1,
+        }}
+      />
+      <View
+        style={{
+          backgroundColor: "tomato",
+          flex: 1,
+        }}
+      />
+    </View>
   );
 }
