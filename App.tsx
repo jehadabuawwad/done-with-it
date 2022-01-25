@@ -25,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "dodgerblue",
-    width: "50%",
+    width: "100%",
     height: 70,
     marginTop: Platform.OS === "android" ? "8%" : 0,
   },
