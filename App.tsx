@@ -30,6 +30,9 @@ export default function App() {
           backgroundColor: "gold",
           width: 100,
           height: 100,
+          position: "absolute",
+          top: 50,
+          left: 10,
         }}
       />
       <View
