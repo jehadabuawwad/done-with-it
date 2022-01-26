@@ -2,6 +2,7 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 import RegisterButton from "../components/RegisterButton";
 import LoginButton from "../components/LoginButton";
 import Logo from "../components/Logo";
+import colors from "../config/colors";
 interface IScreenProps {
   title: string;
   orintation: boolean;
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    color: "#1e1e1e",
+    color: colors.brownyBlack,
     fontWeight: "700",
   },
 });

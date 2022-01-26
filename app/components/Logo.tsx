@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Image } from "react-native";
+import colors from "../config/colors";
 
 interface IImageProps {
   title: string;
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    color: "#1e1e1e",
+    color: colors.brownyBlack,
     fontWeight: "700",
   },
 });

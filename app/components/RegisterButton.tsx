@@ -1,4 +1,5 @@
 import { StyleSheet, TouchableHighlight, View, Text } from "react-native";
+import colors from "../config/colors";
 
 interface IButtonProps {
   title: string;
@@ -26,7 +27,7 @@ export default RegisterButton;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#72cac3",
+    backgroundColor: colors.offGreen,
     borderRadius: 25,
     width: 350,
     height: 100,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   button: { bottom: -125 },
   text: {
-    color: "#fff",
+    color: colors.white,
     fontWeight: "700",
     fontSize: 17,
   },
