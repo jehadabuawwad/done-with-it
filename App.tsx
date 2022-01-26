@@ -1,5 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+
+import AppText from "./components/AppText";
 
 export default function App() {
   return (
@@ -54,6 +55,7 @@ export default function App() {
       >
         This is a part of training on styling components in react native
       </Text>
+      <AppText>This text depend on type of mobile</AppText>
     </View>
   );
 }
