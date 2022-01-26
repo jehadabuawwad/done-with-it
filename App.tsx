@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import {Feather} from "@expo/vector-icons"
 import AppText from "./components/AppText";
+import AppButton from "./components/AppButton";
 
 export default function App() {
+  const handlePress=()=>{
+    alert("hello")
+  }
   return (
     <View style={styles.container}>
       <View
@@ -44,7 +48,7 @@ export default function App() {
           borderRadius: 5,
           borderWidth: 1,
           padding: 5,
-          fontSize: 50,
+          fontSize: 20,
           fontStyle: "normal",
           fontWeight: "600",
           color: "tomato",
@@ -54,8 +58,9 @@ export default function App() {
         }}
       >
         This is a part of training on styling components in react native
-      Icon > x§<Feather name="mail" size={50}/></Text>
+      Icon > <Feather name="mail" size={50}/></Text>
       <AppText>This text depend on type of mobile</AppText>
+      <AppButton title="click here" handlePress={handlePress}></AppButton>
     </View>
   );
 }
