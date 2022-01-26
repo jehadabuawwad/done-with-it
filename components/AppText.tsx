@@ -10,7 +10,7 @@ const AppText: React.FunctionComponent<IAppTextProps> = ({ children }) => {
 export default AppText;
 const styles = StyleSheet.create({
   text: {
-    fontSize: Platform.OS === "android" ? 10 : 50,
+    fontSize: Platform.OS === "android" ? 10 : 30,
     fontFamily: Platform.OS === "android" ? "Roboto" : "avenir",
   },
 });

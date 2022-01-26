@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-
+import {Feather} from "@expo/vector-icons"
 import AppText from "./components/AppText";
 
 export default function App() {
@@ -54,7 +54,7 @@ export default function App() {
         }}
       >
         This is a part of training on styling components in react native
-      </Text>
+      Icon > x§<Feather name="mail" size={50}/></Text>
       <AppText>This text depend on type of mobile</AppText>
     </View>
   );
