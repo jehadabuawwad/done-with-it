@@ -37,6 +37,23 @@ export default function App() {
           margin: 20,
         }}
       ></View>
+
+      <Text
+        style={{
+          borderRadius: 5,
+          borderWidth: 1,
+          padding: 5,
+          fontSize: 50,
+          fontStyle: "normal",
+          fontWeight: "600",
+          color: "tomato",
+          textTransform: "capitalize",
+          textAlign: "center",
+          lineHeight: 60,
+        }}
+      >
+        This is a part of training on styling components in react native
+      </Text>
     </View>
   );
 }
