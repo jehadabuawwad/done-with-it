@@ -1,13 +1,13 @@
 import { StyleSheet, View, ImageBackground } from "react-native";
-import RegisterButton from "../components/registerButton";
-import LoginButton from "../components/loginButton";
-import Logo from "../components/logo";
+import RegisterButton from "../components/RegisterButton";
+import LoginButton from "../components/LoginButton";
+import Logo from "../components/Logo";
 interface IScreenProps {
   title: string;
   orintation: boolean;
 }
 
-const Welcome: React.FunctionComponent<IScreenProps> = (props) => {
+const WelcomeScreen: React.FunctionComponent<IScreenProps> = (props) => {
   const { title, orintation } = props;
 
   return (
@@ -37,7 +37,7 @@ const Welcome: React.FunctionComponent<IScreenProps> = (props) => {
   );
 };
 
-export default Welcome;
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   container: {
