@@ -1,7 +1,7 @@
 import { StyleSheet, View, ImageBackground } from "react-native";
-import RegisterButton from "../components/registerButton";
-import LoginButton from "../components/loginButton";
-import Logo from "../components/logo";
+import RegisterButton from "../components/RegisterButton";
+import LoginButton from "../components/LoginButton";
+import Logo from "../components/Logo";
 interface IScreenProps {
   title: string;
   orintation: boolean;
