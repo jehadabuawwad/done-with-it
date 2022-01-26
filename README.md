@@ -16,6 +16,7 @@ VS Code
 
 - TypeScript
 - React Native
+- Expo
 
 ---
 
@@ -31,6 +32,18 @@ Clone this repository to your local machine.
 
 ```bash
 $ git clone https://github.com/Jehadabuawwad/done-with-it.git
+```
+
+Then you can install the project using Yarn package Manager
+
+```bash
+$ yarn install
+```
+
+Finally You can start the project by :
+
+```bash
+$ yarn start
 ```
 
 ---
@@ -59,7 +72,8 @@ $ git clone https://github.com/Jehadabuawwad/done-with-it.git
 
 ## Change Log
 
-0.1.0: Application Initialized - 25 Jan 2022
+- 0.1.0: Application Initialized - 25 Jan 2022
+- 0.1.0: Welcome and View Image Screen added- 26 Jan 2022
 
 ---
 
