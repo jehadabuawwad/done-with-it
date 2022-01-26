@@ -12,6 +12,10 @@ export default function App() {
           borderWidth: 10,
           borderColor: "royalblue",
           borderRadius: 50,
+          shadowColor: "gray",
+          shadowOffset: { width: -10, height: 10 },
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
         }}
       ></View>
     </View>
