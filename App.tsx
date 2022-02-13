@@ -8,15 +8,18 @@ import MessagesScreen from "./app/screens/MessageScreen";
 
 const DoneWithIt = () => {
   return (
-    <View style={styles.container}>
-      {/* <Card
-        title='Red jacket for sale'
-        subTitle='100$'
-        image={require("./app/assets/card_photos/jacket.jpg")}
-      /> */}
-      {/* <DetailsScreen /> */}
+    // <View style={styles.container}>
+    //   {/* <Card
+    //     title='Red jacket for sale'
+    //     subTitle='100$'
+    //     image={require("./app/assets/card_photos/jacket.jpg")}
+    //   /> */}
+    //   {/* <DetailsScreen /> */}
+
+    // </View>
+    <>
       <MessagesScreen />
-    </View>
+    </>
   );
 };
 
@@ -24,7 +27,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.cardBackground,
     padding: 20,
-
   },
 });
 

@@ -6,6 +6,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { ListItem } from "../components/ListItem";
+import ItemSeperator from "../components/ListItemSeperator";
 
 interface IMessagesScreenProps {}
 
@@ -38,6 +39,7 @@ const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = (
             image={item.image}
           />
         )}
+        ItemSeparatorComponent={ItemSeperator}
       />
     </SafeAreaView>
   );

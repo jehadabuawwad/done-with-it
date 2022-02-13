@@ -25,7 +25,7 @@ export const ListItem: React.FunctionComponent<IListItemProps> = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "row" },
+  container: { flexDirection: "row", padding: 15 },
   image: { width: 70, height: 70, borderRadius: 35, marginRight: 10 },
   subTitle: { color: colors.gray, fontWeight: "500" },
   title: {},
