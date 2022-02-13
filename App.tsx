@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import Card from "./app/components/Card";
 
 import colors from "./app/config/colors";
+import DetailsScreen from "./app/screens/ListingDetailsScreen";
 
 const DoneWithIt = () => {
   return (
@@ -10,8 +11,9 @@ const DoneWithIt = () => {
       <Card
         title='Red jacket for sale'
         subTitle='100$'
-        image={require('./app/assets/card_photos/jacket.jpg')}
+        image={require("./app/assets/card_photos/jacket.jpg")}
       />
+      <DetailsScreen />
     </View>
   );
 };
