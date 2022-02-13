@@ -8,11 +8,11 @@ import DetailsScreen from "./app/screens/ListingDetailsScreen";
 const DoneWithIt = () => {
   return (
     <View style={styles.container}>
-      <Card
+      {/* <Card
         title='Red jacket for sale'
         subTitle='100$'
         image={require("./app/assets/card_photos/jacket.jpg")}
-      />
+      /> */}
       <DetailsScreen />
     </View>
   );
