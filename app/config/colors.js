@@ -7,4 +7,5 @@ export default {
   brownyBlack: "#1e1e1e",
   offGreen: "#72cac3",
   offOrange: "#ea676a",
+  cardBackground: "#f8f4f4",
 };
