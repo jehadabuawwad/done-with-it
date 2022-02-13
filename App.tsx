@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.cardBackground,
     padding: 20,
-    paddingTop: 100,
+
   },
 });
 

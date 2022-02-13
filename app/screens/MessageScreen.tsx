@@ -1,4 +1,10 @@
-import { StyleSheet, FlatList } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  StatusBar,
+  Platform,
+  SafeAreaView,
+} from "react-native";
 import { ListItem } from "../components/ListItem";
 
 interface IMessagesScreenProps {}
@@ -21,19 +27,25 @@ const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = (
   props
 ) => {
   return (
-    <FlatList
-      data={messages}
-      keyExtractor={(MessagesScreen) => MessagesScreen.id.toString()}
-      renderItem={({ item }) => (
-        <ListItem
-          title={item.title}
-          subTitle={item.description}
-          image={item.image}
-        />
-      )}
-    ></FlatList>
+    <SafeAreaView style={styles.screen}>
+      <FlatList
+        data={messages}
+        keyExtractor={(MessagesScreen) => MessagesScreen.id.toString()}
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            subTitle={item.description}
+            image={item.image}
+          />
+        )}
+      />
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+  },
+});
 export default MessagesScreen;
