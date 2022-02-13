@@ -37,6 +37,7 @@ const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = (
             title={item.title}
             subTitle={item.description}
             image={item.image}
+            onPress={() => console.log("message", item)}
           />
         )}
         ItemSeparatorComponent={ItemSeperator}
