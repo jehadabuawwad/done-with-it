@@ -1,6 +1,8 @@
 import Constants from "expo-constants";
 import { StyleSheet, SafeAreaView } from "react-native";
 
+import colors from "../config/colors";
+
 interface IScreenProps {}
 
 const Screen: React.FunctionComponent<IScreenProps> = ({ children }) => {
@@ -8,6 +10,9 @@ const Screen: React.FunctionComponent<IScreenProps> = ({ children }) => {
 };
 
 const styles = StyleSheet.create({
-  screen: { paddingTop: Constants.statusBarHeight },
+  screen: {
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: colors.cardBackground,
+  },
 });
 export default Screen;
