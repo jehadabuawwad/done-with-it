@@ -9,6 +9,7 @@ import { AppTextInput } from "./app/components/AppTextInput";
 import Constants from "expo-constants";
 
 import Screen from "./app/components/Screen";
+import { AppPicker } from "./app/components/AppPicker";
 const DoneWithIt = () => {
   console.log();
 
@@ -24,7 +25,9 @@ const DoneWithIt = () => {
     // </View>
 
     <Screen>
-      <AppTextInput placeholder="UserName" icon='email' />
+      {/* <AppTextInput placeholder="UserName" icon='email' /> */}
+      <AppPicker placeholder="Category" icon='apps' />
+      <AppTextInput placeholder="Email" icon='email' />
     </Screen>
   );
 };
