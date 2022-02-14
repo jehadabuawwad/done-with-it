@@ -1,15 +1,17 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
+
+import defaultStyle from "../config/style";
 
 interface IAppTextProps {
   style: any;
 }
 
-const AppText: React.FunctionComponent<IAppTextProps> = ({ children, style }) => {
-  return <Text style={[styles.text, style]}>{children}</Text>;
+const AppText: React.FunctionComponent<IAppTextProps> = ({
+  children,
+  style,
+}) => {
+  return <Text style={[defaultStyle.text, style]}>{children}</Text>;
 };
 
-const styles = StyleSheet.create({
-  text: { fontSize: 18 },
-});
 export default AppText;
