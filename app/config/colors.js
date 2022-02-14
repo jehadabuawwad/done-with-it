@@ -9,5 +9,5 @@ export default {
   offGreen: "#72cac3",
   offOrange: "#ea676a",
   cardBackground: "#f8f4f4",
-
+  light: "#f8f4f4",
 };
