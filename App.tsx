@@ -1,18 +1,22 @@
-import { StatusBar, Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Card from "./app/components/Card";
-
-import colors from "./app/config/colors";
-import DetailsScreen from "./app/screens/ListingDetailsScreen";
-import MessagesScreen from "./app/screens/MessageScreen";
 import { AppTextInput } from "./app/components/AppTextInput";
-import Constants from "expo-constants";
+import { AppPicker } from "./app/components/AppPicker";
 
 import Screen from "./app/components/Screen";
-import { AppPicker } from "./app/components/AppPicker";
-const DoneWithIt = () => {
-  console.log();
+import DetailsScreen from "./app/screens/ListingDetailsScreen";
+import MessagesScreen from "./app/screens/MessageScreen";
 
+import colors from "./app/config/colors";
+
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
+
+const DoneWithIt = () => {
   return (
     // <View style={styles.container}>
     //   <Card
@@ -26,8 +30,8 @@ const DoneWithIt = () => {
 
     <Screen>
       {/* <AppTextInput placeholder="UserName" icon='email' /> */}
-      <AppPicker placeholder="Category" icon='apps' />
-      <AppTextInput placeholder="Email" icon='email' />
+      <AppPicker items={categories} placeholder='Category' icon='apps' />
+      <AppTextInput placeholder='Email' icon='email' />
     </Screen>
   );
 };

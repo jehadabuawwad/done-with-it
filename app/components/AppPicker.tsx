@@ -1,5 +1,6 @@
 import {
   Button,
+  FlatList,
   Modal,
   Platform,
   StyleSheet,
@@ -13,16 +14,18 @@ import colors from "../config/colors";
 import AppText from "./AppText";
 import { useState } from "react";
 import Screen from "./Screen";
+import PickerItem from "./PickerItem";
 
 interface IAppPickerProps {
   icon: any;
   placeholder: string;
+  items: Array<any>;
 }
 
 export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
   icon,
+  items,
   placeholder,
-  ...otherProps
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -50,6 +53,16 @@ export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
       <Modal visible={modalVisible} animationType='slide'>
         <Screen>
           <Button title='Close' onPress={() => setModalVisible(false)}></Button>
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({ item }) => (
+              <PickerItem
+                label={item.label}
+                onPress={() => console.log(item)}
+              />
+            )}
+          ></FlatList>
         </Screen>
       </Modal>
     </>
