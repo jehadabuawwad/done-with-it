@@ -9,6 +9,7 @@ import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
 
 import colors from "./app/config/colors";
+import { useState } from "react";
 
 const categories = [
   { label: "Furniture", value: 1 },
@@ -17,6 +18,7 @@ const categories = [
 ];
 
 const DoneWithIt = () => {
+  const [category, setCategory] = useState(categories[0]);
   return (
     // <View style={styles.container}>
     //   <Card
@@ -30,7 +32,13 @@ const DoneWithIt = () => {
 
     <Screen>
       {/* <AppTextInput placeholder="UserName" icon='email' /> */}
-      <AppPicker items={categories} placeholder='Category' icon='apps' />
+      <AppPicker
+        selectedItem={category}
+        onSelectItem={(item) => setCategory(item)}
+        items={categories}
+        placeholder='Category'
+        icon='apps'
+      />
       <AppTextInput placeholder='Email' icon='email' />
     </Screen>
   );

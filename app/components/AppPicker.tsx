@@ -20,12 +20,16 @@ interface IAppPickerProps {
   icon: any;
   placeholder: string;
   items: Array<any>;
+  selectedItem: any;
+  onSelectItem: any;
 }
 
 export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
   icon,
   items,
   placeholder,
+  selectedItem,
+  onSelectItem,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -40,7 +44,9 @@ export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </AppText>
           {icon && (
             <MaterialCommunityIcons
               name='chevron-down'
@@ -59,7 +65,10 @@ export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
             renderItem={({ item }) => (
               <PickerItem
                 label={item.label}
-                onPress={() => console.log(item)}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
               />
             )}
           ></FlatList>
