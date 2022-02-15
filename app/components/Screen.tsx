@@ -1,12 +1,27 @@
+import { StyleSheet, SafeAreaView, View } from "react-native";
+
 import Constants from "expo-constants";
-import { StyleSheet, View } from "react-native";
+import colors from "../config/colors";
 
-import style from "../config/style";
+interface IScreenProps {
+  style?: any;
+}
 
-interface IScreenProps {}
-
-const Screen: React.FunctionComponent<IScreenProps> = ({ children }) => {
-  return <View style={style.screen}>{children}</View>;
+const Screen: React.FunctionComponent<IScreenProps> = ({ children, style }) => {
+  return (
+    <SafeAreaView style={[styles.screen, style]}>
+      <View style={[styles.view, style]}>{children}</View>
+    </SafeAreaView>
+  );
 };
 
+const styles = StyleSheet.create({
+  screen: {
+    paddingTop: Constants.statusBarHeight,
+    padding: 10,
+    backgroundColor: colors.white,
+    flex: 1,
+  },
+  view: { flex: 1 },
+});
 export default Screen;
