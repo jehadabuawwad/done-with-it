@@ -40,10 +40,10 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           image={require("./app/assets/card_photos/jacket.jpg")}
         /> */}
         {/* <DetailsScreen /> */}
-        {/* <MessagesScreen /> */}
+        <MessagesScreen />
 
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
-        {/* <AppPicker
+        <AppPicker
           selectedItem={category}
           onSelectItem={(
             item: SetStateAction<{ label: string; value: number }>
@@ -51,8 +51,8 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           items={categories}
           placeholder='Category'
           icon='apps'
-        /> */}
-        <LoginScreen />
+        /> 
+        {/* <LoginScreen /> */}
       </Screen>
     </>
   );
