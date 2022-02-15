@@ -40,7 +40,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           image={require("./app/assets/card_photos/jacket.jpg")}
         /> */}
         {/* <DetailsScreen /> */}
-        {/* <MessagesScreen /> */}
+        <MessagesScreen />
 
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
         {/* <AppPicker
@@ -51,8 +51,8 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           items={categories}
           placeholder='Category'
           icon='apps'
-        /> */}
-        <LoginScreen />
+        />  */}
+        {/* <LoginScreen /> */}
       </Screen>
     </>
   );
