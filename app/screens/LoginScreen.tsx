@@ -9,6 +9,7 @@ import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import ErrorMessage from "../components/Error";
+import AppFormField from "../components/AppFormField";
 
 interface ILoginScreenProps {}
 
@@ -16,6 +17,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
+
 const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
   return (
     <Screen>
@@ -28,7 +30,8 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
-            <AppTextInput
+            <AppFormField
+              name='email'
               autoCorrect={false}
               autoCapitalize='none'
               icon='email'
@@ -38,8 +41,9 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               onBlur={() => setFieldTouched("email")}
               textContentType='emailAddress'
             />
-            <ErrorMessage error={errors.email} visiable={touched.email} />
-            <AppTextInput
+
+            <AppFormField
+              name='password'
               autoCorrect={false}
               autoCapitalize='none'
               icon='lock'
@@ -49,7 +53,6 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               onBlur={() => setFieldTouched("password")}
               textContentType='password'
             />
-            <ErrorMessage error={errors.password} visiable={touched.password} />
             <AppButton title='Login' onPress={handleSubmit} />
           </>
         )}
