@@ -26,7 +26,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
             <AppTextInput
               autoCorrect={false}
@@ -35,9 +35,10 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               placeholder='Email'
               keyboardType='email-address'
               onChangeText={handleChange("email")}
+              onBlur={() => setFieldTouched("email")}
               textContentType='emailAddress'
             />
-            <ErrorMessage error={errors.email} />
+            <ErrorMessage error={errors.email} visiable={touched.email} />
             <AppTextInput
               autoCorrect={false}
               autoCapitalize='none'
@@ -45,9 +46,10 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               placeholder='Password'
               secureTextEntry={true}
               onChangeText={handleChange("password")}
+              onBlur={() => setFieldTouched("password")}
               textContentType='password'
             />
-            <ErrorMessage error={errors.password} />
+            <ErrorMessage error={errors.password} visiable={touched.password} />
             <AppButton title='Login' onPress={handleSubmit} />
           </>
         )}

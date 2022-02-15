@@ -5,10 +5,15 @@ import AppText from "./AppText";
 import colors from "../config/colors";
 
 interface IErrorMessage {
-  error: any;
+  error?: any;
+  visiable?: boolean;
 }
 
-const ErrorMessage: React.FunctionComponent<IErrorMessage> = ({ error }) => {
+const ErrorMessage: React.FunctionComponent<IErrorMessage> = ({
+  error,
+  visiable,
+}) => {
+  if (!error || !visiable) return null;
   return <AppText style={styles.error}>{error}</AppText>;
 };
 

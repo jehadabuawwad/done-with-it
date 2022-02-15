@@ -12,7 +12,8 @@ interface IAppTextInputProps {
   placeholder?: string;
   secureTextEntry?: boolean;
   textContentType?: any;
-  onChangeText: any;
+  onChangeText?: any;
+  onBlur?: any;
 }
 
 export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({
