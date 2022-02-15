@@ -8,6 +8,7 @@ import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
+import ErrorMessage from "../components/Error";
 
 interface ILoginScreenProps {}
 
@@ -36,7 +37,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               onChangeText={handleChange("email")}
               textContentType='emailAddress'
             />
-            <AppText error={true}>{errors.email}</AppText>
+            <ErrorMessage error={errors.email} />
             <AppTextInput
               autoCorrect={false}
               autoCapitalize='none'
@@ -46,7 +47,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
               onChangeText={handleChange("password")}
               textContentType='password'
             />
-            <AppText error={true}>{errors.password}</AppText>
+            <ErrorMessage error={errors.password} />
             <AppButton title='Login' onPress={handleSubmit} />
           </>
         )}

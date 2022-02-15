@@ -5,9 +5,6 @@ export default {
   defaultText: {
     color: colors.black,
   },
-  errorText: {
-    color: colors.red,
-  },
   screen: {
     paddingTop: Constants.statusBarHeight,
     padding: 10,

@@ -12,5 +12,5 @@ export default {
   secondary: "#4ecdc4",
   transparance: "#ffffff00",
   white: "#fff",
-  red: "#FF2511",
+  red: "red",
 };
