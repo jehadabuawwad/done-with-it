@@ -9,9 +9,7 @@ interface IButtonProps {
 
 const handleLogin = () => {};
 
-const LoginButton: React.FunctionComponent<IButtonProps> = (props) => {
-  const { title } = props;
-
+const LoginButton: React.FunctionComponent<IButtonProps> = ({title}) => {
   return (
     <TouchableHighlight
       style={styles.button}
@@ -24,8 +22,6 @@ const LoginButton: React.FunctionComponent<IButtonProps> = (props) => {
     </TouchableHighlight>
   );
 };
-
-export default LoginButton;
 
 const styles = StyleSheet.create({
   container: {
@@ -46,3 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
 });
+
+export default LoginButton;
+

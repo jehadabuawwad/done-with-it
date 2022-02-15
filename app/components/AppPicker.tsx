@@ -44,9 +44,12 @@ export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
           {icon && (
             <MaterialCommunityIcons
               name='chevron-down'
@@ -91,5 +94,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     paddingTop: Platform.OS === "android" ? 5 : 0,
   },
+  placeholder: { color: colors.medium, flex: 1 },
   text: { flex: 1 },
 });

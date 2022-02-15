@@ -5,8 +5,13 @@ import defaultStyle from "../config/style";
 import colors from "../config/colors";
 
 interface IAppTextInputProps {
-  icon: any;
-  placeholder: string;
+  autoCorrect?: boolean;
+  autoCapitalize?: any;
+  icon?: any;
+  keyboardType?: any;
+  placeholder?: string;
+  secureTextEntry?: boolean;
+  textContentType?: any;
 }
 
 export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({
@@ -21,7 +26,7 @@ export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({
         color={colors.medium}
         style={styles.icon}
       />
-      <TextInput style={defaultStyle.text} {...otherProps} />
+      <TextInput style={defaultStyle.defaultText} {...otherProps} />
     </View>
   );
 };

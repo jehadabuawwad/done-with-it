@@ -12,6 +12,7 @@ import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 
 interface IDoneWithItProps {}
 
@@ -44,11 +45,14 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
         {/* <AppPicker
           selectedItem={category}
-          onSelectItem={(item: SetStateAction<{ label: string; value: number; }>) => setCategory(item)}
+          onSelectItem={(
+            item: SetStateAction<{ label: string; value: number }>
+          ) => setCategory(item)}
           items={categories}
           placeholder='Category'
           icon='apps'
-        />  */}
+        /> */}
+        <LoginScreen />
       </Screen>
     </>
   );
