@@ -25,8 +25,10 @@ export const ListItem: React.FunctionComponent<IListItemProps> = ({
     <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
       <View style={styles.container}>
         <Image style={styles.image} source={image} />
-        <View>
-          <AppText style={styles.title}>{title}</AppText>
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title} numberOfLines={2}>
+            {title}
+          </AppText>
           <AppText style={styles.subTitle}>{subTitle}</AppText>
         </View>
       </View>
