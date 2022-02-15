@@ -5,8 +5,14 @@ import defaultStyle from "../config/style";
 import colors from "../config/colors";
 
 interface IAppTextInputProps {
-  icon: any;
-  placeholder: string;
+  autoCorrect?: boolean;
+  autoCapitalize?: any;
+  icon?: any;
+  keyboardType?: any;
+  placeholder?: string;
+  secureTextEntry?: boolean;
+  textContentType?: any;
+  onChangeText: any;
 }
 
 export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({

@@ -12,6 +12,7 @@ import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 
 interface IDoneWithItProps {}
 
@@ -49,6 +50,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           placeholder='Category'
           icon='apps'
         />  */}
+        <LoginScreen />
       </Screen>
     </>
   );
