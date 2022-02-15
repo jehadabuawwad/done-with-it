@@ -5,8 +5,8 @@ import AppText from "./AppText";
 import colors from "../config/colors";
 
 interface IErrorMessage {
-  error?: any;
-  visiable?: boolean;
+  error?: Object;
+  visiable?: Object;
 }
 
 const ErrorMessage: React.FunctionComponent<IErrorMessage> = ({

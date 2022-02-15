@@ -12,8 +12,6 @@ interface IAppTextInputProps {
   placeholder?: string;
   secureTextEntry?: boolean;
   textContentType?: any;
-  onChangeText?: any;
-  onBlur?: any;
 }
 
 export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({
@@ -28,7 +26,7 @@ export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({
         color={colors.medium}
         style={styles.icon}
       />
-      <TextInput style={defaultStyle.text} {...otherProps} />
+      <TextInput style={defaultStyle.defaultText} {...otherProps} />
     </View>
   );
 };

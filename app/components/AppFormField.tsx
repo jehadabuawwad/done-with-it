@@ -6,14 +6,14 @@ import ErrorMessage from "./Error";
 interface IAppFormFieldProps {
   name: string;
   autoCorrect?: boolean;
-  autoCapitalize?: any;
+  autoCapitalize?: string;
   icon?: any;
-  keyboardType?: any;
+  keyboardType?: string;
   placeholder?: string;
   secureTextEntry?: boolean;
-  textContentType?: any;
-  onChangeText?: any;
-  onBlur?: any;
+  textContentType?: string;
+  onChangeText?: Function;
+  onBlur?: Function;
 }
 
 const AppFormField: React.FunctionComponent<IAppFormFieldProps> = ({

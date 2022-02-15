@@ -10,6 +10,7 @@ import AppText from "../components/AppText";
 import colors from "../config/colors";
 import ErrorMessage from "../components/Error";
 import AppFormField from "../components/AppFormField";
+import SubmitButton from "../components/SubmitButton";
 
 interface ILoginScreenProps {}
 
@@ -28,32 +29,28 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
+        {() => (
           <>
             <AppFormField
               name='email'
+              icon='email'
               autoCorrect={false}
               autoCapitalize='none'
-              icon='email'
               placeholder='Email'
               keyboardType='email-address'
-              onChangeText={handleChange("email")}
-              onBlur={() => setFieldTouched("email")}
               textContentType='emailAddress'
             />
 
             <AppFormField
               name='password'
+              icon='lock'
               autoCorrect={false}
               autoCapitalize='none'
-              icon='lock'
               placeholder='Password'
               secureTextEntry={true}
-              onChangeText={handleChange("password")}
-              onBlur={() => setFieldTouched("password")}
               textContentType='password'
             />
-            <AppButton title='Login' onPress={handleSubmit} />
+            <SubmitButton title='Login' />
           </>
         )}
       </Formik>
