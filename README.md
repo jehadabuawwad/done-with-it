@@ -73,7 +73,19 @@ $ yarn start
 ## Change Log
 
 - 0.1.0: Application Initialized - 25 Jan 2022
-- 0.1.0: Welcome and View Image Screen added- 26 Jan 2022
+
+- 0.1.0: Welcome screen added - 26 Jan 2022
+- 0.1.0: View image screen added - 26 Jan 2022
+
+- 0.1.0: Card component added - 13 Feb 2022
+- 0.1.0: Items seperator component added - 13 Feb 2022
+- 0.1.0: List item component added - 13 Feb 2022
+- 0.1.0: Message screen added - 13 Feb 2022
+- 0.1.0: Details screen added - 13 Feb 2022
+
+- 0.1.0: Text input component added - 14 Feb 2022
+- 0.1.0: Custom picker component added - 14 Feb 2022
+- 0.1.0: Screen component added - 14 Feb 2022
 
 ---
 
