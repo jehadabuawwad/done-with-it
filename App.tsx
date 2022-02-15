@@ -43,7 +43,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         <MessagesScreen />
 
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
-        {/* <AppPicker
+        <AppPicker
           selectedItem={category}
           onSelectItem={(
             item: SetStateAction<{ label: string; value: number }>
@@ -51,7 +51,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           items={categories}
           placeholder='Category'
           icon='apps'
-        />  */}
+        /> 
         {/* <LoginScreen /> */}
       </Screen>
     </>
