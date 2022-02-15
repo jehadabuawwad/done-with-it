@@ -2,9 +2,11 @@ import Constants from "expo-constants";
 import colors from "./colors";
 
 export default {
-  text: {
-    color: colors.dark,
-    fontSize: 16,
+  defaultText: {
+    color: colors.black,
+  },
+  errorText: {
+    color: colors.red,
   },
   screen: {
     paddingTop: Constants.statusBarHeight,

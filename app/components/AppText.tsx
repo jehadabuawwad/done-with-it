@@ -1,17 +1,30 @@
 import React from "react";
-import { Text } from "react-native";
-
-import defaultStyle from "../config/style";
-
+import {  Text } from "react-native";
+import style from "../config/style";
 interface IAppTextProps {
-  style: any;
+  error: boolean;
 }
 
 const AppText: React.FunctionComponent<IAppTextProps> = ({
   children,
-  style,
+  error,
+  ...otherProps
 }) => {
-  return <Text style={[defaultStyle.text, style]}>{children}</Text>;
+  let element: any;
+  {
+    !error
+      ? (element = (
+          <Text style={style.defaultText} {...otherProps}>
+            {children}
+          </Text>
+        ))
+      : (element = (
+          <Text style={style.errorText} {...otherProps}>
+            {children}
+          </Text>
+        ));
+  }
+  return element;
 };
 
 export default AppText;
