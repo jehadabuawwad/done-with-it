@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
+import * as ImagePicker from "expo-image-picker";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
@@ -29,6 +30,17 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
   // console.log(Dimensions.get("screen"));
 
   const image = { uri: "../assets/background.jpg" };
+
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    !granted &&
+      alert("You Need to get permession to access the library of photos");
+  };
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
   return (
     <>
       <Screen>
