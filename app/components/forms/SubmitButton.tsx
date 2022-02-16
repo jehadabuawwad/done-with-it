@@ -1,4 +1,4 @@
-import AppButton from "./AppButton";
+import AppButton from "../AppButton";
 
 import { useFormikContext } from "formik";
 import { FormikValues } from "formik";

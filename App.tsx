@@ -4,10 +4,10 @@ import { useDeviceOrientation } from "@react-native-community/hooks";
 
 import Card from "./app/components/Card";
 
-import { AppTextInput } from "./app/components/AppTextInput";
-import { AppPicker } from "./app/components/AppPicker";
-
 import Screen from "./app/components/Screen";
+import { AppTextInput } from "./app/components/AppTextInput";
+import Picker from './app/components/Picker';
+
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -40,10 +40,10 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           image={require("./app/assets/card_photos/jacket.jpg")}
         /> */}
         {/* <DetailsScreen /> */}
-        <MessagesScreen />
+        {/* <MessagesScreen /> */}
 
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
-        <AppPicker
+        <Picker
           selectedItem={category}
           onSelectItem={(
             item: SetStateAction<{ label: string; value: number }>

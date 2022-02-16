@@ -2,10 +2,8 @@ import { Image, StyleSheet } from "react-native";
 
 import * as Yup from "yup";
 
+import { Form, FormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
-import AppFormField from "../components/AppFormField";
-import SubmitButton from "../components/SubmitButton";
-import AppForm from "../components/AppForm";
 
 interface ILoginScreenProps {}
 
@@ -18,12 +16,12 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
   return (
     <Screen>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-      <AppForm
+      <Form
         initialValues={{ email: "", password: "" }}
         onSubmit={(values: string) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField
+        <FormField
           name='email'
           icon='email'
           autoCorrect={false}
@@ -32,7 +30,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
           keyboardType='email-address'
           textContentType='emailAddress'
         />
-        <AppFormField
+        <FormField
           name='password'
           icon='lock'
           autoCorrect={false}
@@ -42,7 +40,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
           textContentType='password'
         />
         <SubmitButton title='Login' />
-      </AppForm>
+      </Form>
     </Screen>
   );
 };

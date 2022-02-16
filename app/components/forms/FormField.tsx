@@ -1,7 +1,7 @@
 import { FormikValues, useFormikContext } from "formik";
 
-import { AppTextInput } from "./AppTextInput";
-import ErrorMessage from "./Error";
+import { AppTextInput } from "../AppTextInput";
+import ErrorMessage from "./ErrorMessage";
 
 interface IAppFormFieldProps {
   name: string;

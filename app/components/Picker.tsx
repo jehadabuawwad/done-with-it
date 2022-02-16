@@ -7,14 +7,14 @@ import {
   TouchableNativeFeedback,
   View,
 } from "react-native";
+import { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyle from "../config/style";
-import colors from "../config/colors";
 import AppText from "./AppText";
-import { useState } from "react";
-import Screen from "./Screen";
 import PickerItem from "./PickerItem";
+import Screen from "./Screen";
+
+import colors from "../config/colors";
 
 interface IAppPickerProps {
   icon: any;
@@ -24,7 +24,7 @@ interface IAppPickerProps {
   onSelectItem: any;
 }
 
-export const AppPicker: React.FunctionComponent<IAppPickerProps> = ({
+const Picker: React.FunctionComponent<IAppPickerProps> = ({
   icon,
   items,
   placeholder,
@@ -97,3 +97,5 @@ const styles = StyleSheet.create({
   placeholder: { color: colors.medium, flex: 1 },
   text: { flex: 1 },
 });
+
+export default Picker;
