@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
 import Card from "./app/components/Card";
 import Picker from "./app/components/Picker";
+import ImageInput from "./app/components/ImageInput";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -13,8 +14,6 @@ import MessagesScreen from "./app/screens/MessageScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
-import ImageInput from "./app/components/ImageInput";
-import ImageInputList from "./app/components/ImageInputList";
 
 interface IDoneWithItProps {}
 
@@ -33,14 +32,6 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
 
   // Information about dimenstions of screen
   // console.log(Dimensions.get("screen"));
-
-  const handleAdd = (uri: string) => {
-    setImageUris([...imageUris, uri]);
-  };
-
-  const handleRemove = (uri: string) => {
-    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
-  };
 
   return (
     <>
@@ -74,12 +65,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
-
-        <ImageInputList
-          imageUris={imageUris}
-          onAddImage={handleAdd}
-          onRemoveImage={handleRemove}
-        />
+        {/* <ListingEditScreen /> */}
       </Screen>
     </>
   );
