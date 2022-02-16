@@ -65,7 +65,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
-        {/* <ListingEditScreen /> */}
+        <ListingEditScreen />
       </Screen>
     </>
   );
