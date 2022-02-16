@@ -14,6 +14,7 @@ import MessagesScreen from "./app/screens/MessageScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import ImageInput from "./app/components/ImageInput";
 
 interface IDoneWithItProps {}
 
@@ -78,18 +79,13 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <ListingEditScreen /> */}
 
         <Button onPress={selectImage} title='Select Image' />
-
-        {imagSet && (
-          <Image
-            source={{ uri: imageUri }}
-            style={{ height: 300, flex: 0.5 }}
-          />
-        )}
+        {imagSet && <Image source={{ uri: imageUri }} style={styles.image} />}
+        <ImageInput imagSet={imagSet} imageUri={imageUri} />
       </Screen>
     </>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ image: { height: 200, width: 200 } });
 
 export default DoneWithIt;
