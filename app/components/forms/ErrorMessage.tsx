@@ -1,19 +1,19 @@
 import { StyleSheet } from "react-native";
 
-import AppText from "../AppText";
+import AppText from "../Text";
 
 import colors from "../../config/colors";
 
 interface IErrorMessage {
   error?: Object;
-  visiable?: Object;
+  visible?: Object;
 }
 
 const ErrorMessage: React.FunctionComponent<IErrorMessage> = ({
   error,
-  visiable,
+  visible,
 }) => {
-  if (!error || !visiable) return null;
+  if (!error || !visible) return null;
   return <AppText style={styles.error}>{error}</AppText>;
 };
 

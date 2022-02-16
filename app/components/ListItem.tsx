@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import AppText from "./AppText";
+import AppText from "./Text";
 
 import colors from "../config/colors";
 

@@ -14,6 +14,10 @@ interface IAppFormFieldProps {
   textContentType?: string;
   onChangeText?: Function;
   onBlur?: Function;
+  maxLength?: number;
+  width?: number;
+  multiline?: boolean;
+  numberOfLines?: number;
 }
 
 const AppFormField: React.FunctionComponent<IAppFormFieldProps> = ({
@@ -30,7 +34,7 @@ const AppFormField: React.FunctionComponent<IAppFormFieldProps> = ({
         onBlur={() => setFieldTouched(name)}
         {...otherProps}
       />
-      <ErrorMessage error={errors[name]} visiable={touched[name]} />
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
     </>
   );
 };

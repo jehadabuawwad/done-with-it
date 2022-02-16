@@ -6,13 +6,14 @@ import Card from "./app/components/Card";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/AppTextInput";
-import Picker from './app/components/Picker';
+import Picker from "./app/components/Picker";
 
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
 import LoginScreen from "./app/screens/LoginScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 interface IDoneWithItProps {}
 
@@ -43,7 +44,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <MessagesScreen /> */}
 
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
-        <Picker
+        {/* <Picker
           selectedItem={category}
           onSelectItem={(
             item: SetStateAction<{ label: string; value: number }>
@@ -51,8 +52,9 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           items={categories}
           placeholder='Category'
           icon='apps'
-        /> 
+        />  */}
         {/* <LoginScreen /> */}
+        <ListingEditScreen />
       </Screen>
     </>
   );
