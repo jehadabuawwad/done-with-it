@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 
 import Screen from "./app/components/Screen";
@@ -14,6 +14,7 @@ import LoginScreen from "./app/screens/LoginScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 interface IDoneWithItProps {}
 
@@ -26,13 +27,20 @@ const categories = [
 const image = { uri: "../assets/background.jpg" };
 
 const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
-  const [imageUri, setImageUri] = useState("");
-  const [imagSet, setImageSet] = useState(false);
+  const [imageUris, setImageUris] = useState<Array<string>>([]);
   const [category, setCategory] = useState(categories[0]);
   const { landscape } = useDeviceOrientation();
 
   // Information about dimenstions of screen
   // console.log(Dimensions.get("screen"));
+
+  const handleAdd = (uri: string) => {
+    setImageUris([...imageUris, uri]);
+  };
+
+  const handleRemove = (uri: string) => {
+    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
+  };
 
   return (
     <>
@@ -66,11 +74,17 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
+
+        <ImageInputList
+          imageUris={imageUris}
+          onAddImage={handleAdd}
+          onRemoveImage={handleRemove}
+        />
       </Screen>
     </>
   );
 };
 
-const styles = StyleSheet.create({ image: { height: 200, width: 200 } });
+const styles = StyleSheet.create({});
 
 export default DoneWithIt;

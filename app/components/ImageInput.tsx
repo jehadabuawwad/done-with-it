@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   Image,
-  Button,
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
@@ -14,17 +13,14 @@ import colors from "../config/colors";
 import * as ImagePicker from "expo-image-picker";
 
 interface IImageInputProps {
-  imagSet: boolean;
-  imageUri: string;
+  imageUri?: string;
   onChangeImage: Function;
 }
 
 const ImageInput: React.FunctionComponent<IImageInputProps> = ({
   imageUri,
-  imagSet,
   onChangeImage,
 }) => {
-  
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     !granted &&
@@ -48,13 +44,13 @@ const ImageInput: React.FunctionComponent<IImageInputProps> = ({
   }, []);
 
   const handlePress = () => {
-    !imagSet && selectImage();
-    imagSet &&
+    !imageUri && selectImage();
+    imageUri &&
       Alert.alert("Delete", "Are You sure you want to delete this photo ?", [
         {
           text: "Yes",
           onPress: () => {
-            onChangeImage(null);
+            onChangeImage(imageUri);
           },
         },
         { text: "No" },
@@ -65,14 +61,16 @@ const ImageInput: React.FunctionComponent<IImageInputProps> = ({
     <>
       <TouchableWithoutFeedback onPress={handlePress}>
         <View style={styles.container}>
-          {!imagSet && (
+          {!imageUri && (
             <MaterialCommunityIcons
               name='camera'
               color={colors.medium}
               size={40}
             />
           )}
-          {imagSet && <Image source={{ uri: imageUri }} style={styles.image} />}
+          {imageUri && (
+            <Image source={{ uri: imageUri }} style={styles.image} />
+          )}
         </View>
       </TouchableWithoutFeedback>
     </>
@@ -88,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
     width: 100,
+    marginRight: 10,
   },
   image: { height: 100, width: 100, borderRadius: 15 },
 });
