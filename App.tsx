@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
-import { Button, Image, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Image } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
-import * as ImagePicker from "expo-image-picker";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
@@ -18,40 +17,22 @@ import ImageInput from "./app/components/ImageInput";
 
 interface IDoneWithItProps {}
 
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
+
+const image = { uri: "../assets/background.jpg" };
+
 const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
   const [imageUri, setImageUri] = useState("");
   const [imagSet, setImageSet] = useState(false);
-  const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Clothing", value: 2 },
-    { label: "Cameras", value: 3 },
-  ];
-
   const [category, setCategory] = useState(categories[0]);
   const { landscape } = useDeviceOrientation();
+
   // Information about dimenstions of screen
   // console.log(Dimensions.get("screen"));
-
-  const image = { uri: "../assets/background.jpg" };
-
-  const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-    !granted &&
-      alert("You Need to get permession to access the library of photos");
-  };
-
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      !result.cancelled && setImageUri(result.uri);
-      !result.cancelled && setImageSet(true);
-    } catch (error) {
-      alert(error);
-    }
-  };
-  useEffect(() => {
-    requestPermission();
-  }, []);
 
   return (
     <>
@@ -71,16 +52,20 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           placeholder='Category'
           icon='apps'
         />  */}
+        {/* <ImageInput
+          imagSet={imagSet}
+          imageUri={imageUri}
+          onChangeImage={(uri: string) => {
+            setImageUri(uri);
+            setImageSet(!imagSet);
+          }}
+        /> */}
         {/* <WelcomeScreen orintation={landscape} /> */}
         {/* <ViewImageScreen /> */}
         {/* <MessagesScreen /> */}
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
-
-        <Button onPress={selectImage} title='Select Image' />
-        {imagSet && <Image source={{ uri: imageUri }} style={styles.image} />}
-        <ImageInput imagSet={imagSet} imageUri={imageUri} />
       </Screen>
     </>
   );
