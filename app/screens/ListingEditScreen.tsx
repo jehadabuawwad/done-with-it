@@ -12,7 +12,7 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 
 import Screen from "../components/Screen";
 import FormImagPicker from "../components/forms/FormImagePicker";
-import { useEffect, useState } from "react";
+import useLocation from "../hooks/useLocation";
 
 interface IListingEditScreenProps {}
 
@@ -84,21 +84,7 @@ const categories = [
 const ListingEditScreen: React.FunctionComponent<
   IListingEditScreenProps
 > = () => {
-  const [location, setLocation] = useState<any>();
-
-  const getLocation: any = async () => {
-    const { granted } = await Location.requestForegroundPermissionsAsync();
-    if (!granted) {
-      return null;
-    }
-    const { coords } = await Location.getCurrentPositionAsync({});
-    const { longitude, latitude } = coords;
-    const data = { longitude, latitude };
-    setLocation(data);
-  };
-
-  useEffect(() => getLocation(), []);
-  
+  const location = useLocation();
   return (
     <Screen style={styles.container}>
       <Form
@@ -109,7 +95,7 @@ const ListingEditScreen: React.FunctionComponent<
           category: null,
           images: [],
         }}
-        onSubmit={(values: any) => console.log(values,location)}
+        onSubmit={(values: any) => console.log(values, location)}
         validationSchema={validationSchema}
       >
         <FormImagPicker name='images' />
