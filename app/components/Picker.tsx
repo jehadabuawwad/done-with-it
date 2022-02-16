@@ -10,9 +10,9 @@ import {
 import { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import Screen from "./Screen";
 import AppText from "./Text";
 import PickerItem from "./PickerItem";
-import Screen from "./Screen";
 
 import colors from "../config/colors";
 

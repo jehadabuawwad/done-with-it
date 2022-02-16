@@ -1,13 +1,12 @@
 import { StyleSheet, View, Text, Image } from "react-native";
+
 import colors from "../config/colors";
 
 interface IImageProps {
   title: string;
 }
 
-const Logo: React.FunctionComponent<IImageProps> = (props) => {
-  const { title } = props;
-
+const Logo: React.FunctionComponent<IImageProps> = ({ title }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/logo-red.png")} />
@@ -17,8 +16,6 @@ const Logo: React.FunctionComponent<IImageProps> = (props) => {
     </View>
   );
 };
-
-export default Logo;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,3 +45,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 });
+
+export default Logo;

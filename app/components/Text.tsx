@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
-import style from "../config/style";
+
 interface IAppTextProps {
   style?: any;
   numberOfLines?: number;

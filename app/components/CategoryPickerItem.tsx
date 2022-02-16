@@ -2,6 +2,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 
 import Icon from "./Icon";
 import Text from "./Text";
+
 interface ICategoryPickerItemProps {
   item: any;
   onPress: any;

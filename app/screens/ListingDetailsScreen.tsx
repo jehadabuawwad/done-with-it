@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Image, View, StyleSheet } from "react-native";
 
 import AppText from "../components/Text";

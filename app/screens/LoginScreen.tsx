@@ -1,5 +1,4 @@
 import { Image, StyleSheet } from "react-native";
-
 import * as Yup from "yup";
 
 import { Form, FormField, SubmitButton } from "../components/forms";

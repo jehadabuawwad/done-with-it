@@ -7,9 +7,7 @@ interface IButtonProps {
 
 const handleRegister = () => {};
 
-const RegisterButton: React.FunctionComponent<IButtonProps> = (props) => {
-  const { title } = props;
-
+const RegisterButton: React.FunctionComponent<IButtonProps> = ({ title }) => {
   return (
     <TouchableHighlight
       style={styles.button}
@@ -22,8 +20,6 @@ const RegisterButton: React.FunctionComponent<IButtonProps> = (props) => {
     </TouchableHighlight>
   );
 };
-
-export default RegisterButton;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,3 +40,5 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
 });
+
+export default RegisterButton;

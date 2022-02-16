@@ -1,11 +1,13 @@
-import { StyleSheet, FlatList, StatusBar, Platform } from "react-native";
-import Screen from "../components/Screen";
+import { FlatList } from "react-native";
+import { useState } from "react";
+
 import {
   ListItem,
   ListItemDeleteAction,
   ListItemSeperator,
 } from "../components/lists";
-import { useState } from "react";
+
+import Screen from "../components/Screen";
 
 interface IMessagesScreenProps {}
 
@@ -25,14 +27,16 @@ const initialMessages = [
   },
 ];
 
-const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = (
-  props
-) => {
+const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = () => {
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 
-  const handleDelete = (message: { id: any; title?: string; description?: string; image?: any; }) => {
-    // Delete the message from messages
+  const handleDelete = (message: {
+    id: any;
+    title?: string;
+    description?: string;
+    image?: any;
+  }) => {
     setMessages(messages.filter((m) => m.id !== message.id));
   };
   return (
@@ -68,9 +72,4 @@ const MessagesScreen: React.FunctionComponent<IMessagesScreenProps> = (
   );
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-  },
-});
 export default MessagesScreen;

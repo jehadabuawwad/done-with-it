@@ -1,14 +1,11 @@
 import { StyleSheet, Image, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import colors from "../config/colors";
 
-interface IScreenProps {
-  title: string;
-}
+interface IScreenProps {}
 
-const ViewImageScreen: React.FunctionComponent<IScreenProps> = (props) => {
-  const { title } = props;
-
+const ViewImageScreen: React.FunctionComponent<IScreenProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.closeIcon}>
@@ -30,8 +27,6 @@ const ViewImageScreen: React.FunctionComponent<IScreenProps> = (props) => {
   );
 };
 
-export default ViewImageScreen;
-
 const styles = StyleSheet.create({
   closeIcon: {
     position: "absolute",
@@ -52,3 +47,5 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 });
+
+export default ViewImageScreen;

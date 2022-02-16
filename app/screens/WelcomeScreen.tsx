@@ -1,16 +1,18 @@
 import { StyleSheet, View, ImageBackground } from "react-native";
+
 import RegisterButton from "../components/RegisterButton";
 import LoginButton from "../components/LoginButton";
 import Logo from "../components/Logo";
+
 import colors from "../config/colors";
+
 interface IScreenProps {
-  title: string;
   orintation: boolean;
 }
 
-const WelcomeScreen: React.FunctionComponent<IScreenProps> = (props) => {
-  const { title, orintation } = props;
-
+const WelcomeScreen: React.FunctionComponent<IScreenProps> = ({
+  orintation,
+}) => {
   return (
     <ImageBackground
       style={{
@@ -37,8 +39,6 @@ const WelcomeScreen: React.FunctionComponent<IScreenProps> = (props) => {
     </ImageBackground>
   );
 };
-
-export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -68,3 +68,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 });
+
+export default WelcomeScreen;

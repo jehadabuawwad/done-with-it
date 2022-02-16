@@ -3,7 +3,6 @@ import {
   View,
   StyleSheet,
   Image,
-  Text,
   ImageSourcePropType,
 } from "react-native";
 

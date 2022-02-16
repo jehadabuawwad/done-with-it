@@ -7,11 +7,10 @@ import {
   FormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 
 import Screen from "../components/Screen";
 
-import * as React from "react";
-import CategoryPickerItem from "../components/CategoryPickerItem";
 
 interface IListingEditScreenProps {}
 
@@ -79,9 +78,9 @@ const categories = [
   },
 ];
 
-const ListingEditScreen: React.FunctionComponent<IListingEditScreenProps> = (
-  props
-) => {
+const ListingEditScreen: React.FunctionComponent<
+  IListingEditScreenProps
+> = () => {
   return (
     <Screen style={styles.container}>
       <Form

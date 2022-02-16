@@ -1,18 +1,17 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 
-import Card from "./app/components/Card";
-
 import Screen from "./app/components/Screen";
-import { AppTextInput } from "./app/components/AppTextInput";
+import { AppTextInput } from "./app/components/TextInput";
+import Card from "./app/components/Card";
 import Picker from "./app/components/Picker";
 
-import DetailsScreen from "./app/screens/ListingDetailsScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
 import LoginScreen from "./app/screens/LoginScreen";
+import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 interface IDoneWithItProps {}
@@ -32,17 +31,12 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
   const image = { uri: "../assets/background.jpg" };
   return (
     <>
-      {/* <WelcomeScreen title='Welcome Screen' orintation={landscape} /> */}
-      {/* <ViewImageScreen title='View Image Screen' /> */}
       <Screen>
         {/* <Card
           title='Red jacket for sale'
           subTitle='100$'
           image={require("./app/assets/card_photos/jacket.jpg")}
         /> */}
-        {/* <DetailsScreen /> */}
-        {/* <MessagesScreen /> */}
-
         {/* <AppTextInput placeholder='UserName' icon='email' /> */}
         {/* <Picker
           selectedItem={category}
@@ -53,6 +47,10 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           placeholder='Category'
           icon='apps'
         />  */}
+        {/* <WelcomeScreen orintation={landscape} /> */}
+        {/* <ViewImageScreen /> */}
+        {/* <MessagesScreen /> */}
+        {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
       </Screen>
