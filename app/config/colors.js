@@ -13,4 +13,5 @@ export default {
   transparance: "#ffffff00",
   white: "#fff",
   red: "red",
+  danger: "#ff5252",
 };

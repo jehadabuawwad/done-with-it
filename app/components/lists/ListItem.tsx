@@ -7,18 +7,19 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import AppText from "./Text";
+import AppText from "../Text";
 
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 interface IListItemProps {
   title: string;
   subTitle: string;
   image: ImageSourcePropType;
   onPress?: any;
+  renderRightActions?: any;
 }
 
-export const ListItem: React.FunctionComponent<IListItemProps> = ({
+const ListItem: React.FunctionComponent<IListItemProps> = ({
   image,
   title,
   subTitle,
@@ -49,3 +50,4 @@ const styles = StyleSheet.create({
   subTitle: { color: colors.gray, fontWeight: "500" },
   title: {},
 });
+export default ListItem;

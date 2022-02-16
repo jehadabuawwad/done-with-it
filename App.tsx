@@ -54,7 +54,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           icon='apps'
         />  */}
         {/* <LoginScreen /> */}
-        <ListingEditScreen />
+        {/* <ListingEditScreen /> */}
       </Screen>
     </>
   );
