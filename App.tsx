@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import { Button, Image, StyleSheet, View } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 import * as ImagePicker from "expo-image-picker";
 
@@ -18,6 +18,8 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 interface IDoneWithItProps {}
 
 const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
+  const [imageUri, setImageUri] = useState("");
+  const [imagSet, setImageSet] = useState(false);
   const categories = [
     { label: "Furniture", value: 1 },
     { label: "Clothing", value: 2 },
@@ -37,6 +39,15 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
       alert("You Need to get permession to access the library of photos");
   };
 
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      !result.cancelled && setImageUri(result.uri);
+      !result.cancelled && setImageSet(true);
+    } catch (error) {
+      alert(error);
+    }
+  };
   useEffect(() => {
     requestPermission();
   }, []);
@@ -65,6 +76,15 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
+
+        <Button onPress={selectImage} title='Select Image' />
+
+        {imagSet && (
+          <Image
+            source={{ uri: imageUri }}
+            style={{ height: 300, flex: 0.5 }}
+          />
+        )}
       </Screen>
     </>
   );
