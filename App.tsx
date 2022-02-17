@@ -1,48 +1,28 @@
 import { useState } from "react";
 import { useDeviceOrientation } from "@react-native-community/hooks";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./app/components/Screen";
+import AuthNavigation from "./app/navigation/AuthNavigation";
 import { AppTextInput } from "./app/components/TextInput";
 import Card from "./app/components/Card";
 import Picker from "./app/components/Picker";
-
 import WelcomeScreen from "./app/screens/WelcomeScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
-import LoginScreen from "./app/screens/LoginScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import colors from "./app/config/colors";
 
 interface IDoneWithItProps {}
 
-const Stack = createStackNavigator();
+
 
 const StackNavigator: React.FunctionComponent = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerMode: "screen",
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name='Home' component={WelcomeScreen} />
-      <Stack.Screen
-        options={{
-          title: "User Login",
-          headerShown: true,
-          headerTintColor: "white",
-          headerStyle: { backgroundColor: colors.offOrange },
-        }}
-        name='Login'
-        component={LoginScreen}
-      />
-    </Stack.Navigator>
-  );
+  return <></>;
 };
 
 const Tab = createBottomTabNavigator();
@@ -85,7 +65,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
 
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <AuthNavigation />
       {/* <TabNavigator /> */}
     </NavigationContainer>
   );
