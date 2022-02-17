@@ -7,7 +7,7 @@ import colors from "../config/colors";
 
 interface IDetailsScreenProps {}
 
-const DetailsScreen: React.FunctionComponent<IDetailsScreenProps> = (props) => {
+const ListingDetailsScreen: React.FunctionComponent<IDetailsScreenProps> = (props) => {
   return (
     <View>
       <Image
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailsScreen;
+export default ListingDetailsScreen;
