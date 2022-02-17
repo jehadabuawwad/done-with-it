@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
@@ -16,45 +18,33 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 interface IDoneWithItProps {}
 
-const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
-  const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Clothing", value: 2 },
-    { label: "Cameras", value: 3 },
-  ];
+const Stack = createStackNavigator();
 
-  const [category, setCategory] = useState(categories[0]);
-  const { landscape } = useDeviceOrientation();
+const StackNavigator: React.FunctionComponent = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={WelcomeScreen} />
+      <Stack.Screen name='Login' component={LoginScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
+  // const categories = [
+  //   { label: "Furniture", value: 1 },
+  //   { label: "Clothing", value: 2 },
+  //   { label: "Cameras", value: 3 },
+  // ];
+  // const [category, setCategory] = useState(categories[0]);
+  // const { landscape } = useDeviceOrientation();
   // Information about dimenstions of screen
   // console.log(Dimensions.get("screen"));
+  // const image = { uri: "../assets/background.jpg" };
 
-  const image = { uri: "../assets/background.jpg" };
   return (
-    <>
-      <Screen>
-        {/* <Card
-          title='Red jacket for sale'
-          subTitle='100$'
-          image={require("./app/assets/card_photos/jacket.jpg")}
-        /> */}
-        {/* <AppTextInput placeholder='UserName' icon='email' /> */}
-        {/* <Picker
-          selectedItem={category}
-          onSelectItem={(
-            item: SetStateAction<{ label: string; value: number }>
-          ) => setCategory(item)}
-          items={categories}
-          placeholder='Category'
-          icon='apps'
-        />  */}
-        {/* <WelcomeScreen orintation={landscape} /> */}
-        {/* <ViewImageScreen /> */}
-        {/* <MessagesScreen /> */}
-        {/* <DetailsScreen /> */}
-        {/* <LoginScreen /> */}
-        {/* <ListingEditScreen /> */}
-      </Screen>
-    </>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 };
 
