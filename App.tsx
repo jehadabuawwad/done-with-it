@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -47,7 +46,4 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({});
-
 export default DoneWithIt;
