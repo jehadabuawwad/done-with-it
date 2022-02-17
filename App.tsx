@@ -14,6 +14,7 @@ import MessagesScreen from "./app/screens/MessageScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import colors from "./app/config/colors";
 
 interface IDoneWithItProps {}
 
@@ -21,11 +22,19 @@ const Stack = createStackNavigator();
 
 const StackNavigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "screen",
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name='Home' component={WelcomeScreen} />
       <Stack.Screen
         options={{
           title: "User Login",
+          headerShown: true,
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: colors.offOrange },
         }}
         name='Login'
         component={LoginScreen}
