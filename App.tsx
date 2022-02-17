@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDeviceOrientation } from "@react-native-community/hooks";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
@@ -43,6 +44,17 @@ const StackNavigator: React.FunctionComponent = () => {
   );
 };
 
+const Tab = createBottomTabNavigator();
+
+const TabNavigator: React.FunctionComponent = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name='Home' component={WelcomeScreen} />
+      <Tab.Screen name='Login' component={LoginScreen} />
+    </Tab.Navigator>
+  );
+};
+
 const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
   // const categories = [
   //   { label: "Furniture", value: 1 },
@@ -57,7 +69,8 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
 
   return (
     <NavigationContainer>
-      <StackNavigator />
+      {/* <StackNavigator /> */}
+      {/* <TabNavigator /> */}
     </NavigationContainer>
   );
 };
