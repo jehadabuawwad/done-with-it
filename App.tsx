@@ -17,10 +17,11 @@ import ViewImageScreen from "./app/screens/ViewImageScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import ListingsScreen from "./app/screens/ListingsScreen";
+import AccountScreen from "./app/screens/AccountScreen";
 
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import colors from "./app/config/colors";
-import ListingsScreen from "./app/screens/ListingsScreen";
 
 interface IDoneWithItProps {}
 
@@ -64,9 +65,10 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
 
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <ListingsScreen/>
+      {/* <ListingsScreen/> */}
       {/* <AuthNavigation /> */}
       {/* <TabNavigator /> */}
+      {/* <AccountScreen /> */}
     </NavigationContainer>
   );
 };
