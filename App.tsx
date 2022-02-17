@@ -20,6 +20,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import colors from "./app/config/colors";
+import ListingsScreen from "./app/screens/ListingsScreen";
 
 interface IDoneWithItProps {}
 
@@ -63,7 +64,8 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
 
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <AuthNavigation />
+      <ListingsScreen/>
+      {/* <AuthNavigation /> */}
       {/* <TabNavigator /> */}
     </NavigationContainer>
   );
