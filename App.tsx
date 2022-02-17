@@ -6,24 +6,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./app/components/Screen";
 import AuthNavigation from "./app/navigation/AuthNavigation";
+
 import { AppTextInput } from "./app/components/TextInput";
 import Card from "./app/components/Card";
 import Picker from "./app/components/Picker";
+
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import MessagesScreen from "./app/screens/MessageScreen";
 import DetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+
+import NavigationTheme from "./app/navigation/NavigationTheme";
 import colors from "./app/config/colors";
 
 interface IDoneWithItProps {}
-
-
-
-const StackNavigator: React.FunctionComponent = () => {
-  return <></>;
-};
 
 const Tab = createBottomTabNavigator();
 
@@ -64,7 +62,7 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
   // const image = { uri: "../assets/background.jpg" };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={NavigationTheme}>
       <AuthNavigation />
       {/* <TabNavigator /> */}
     </NavigationContainer>
