@@ -23,7 +23,13 @@ const StackNavigator: React.FunctionComponent = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name='Home' component={WelcomeScreen} />
-      <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen
+        options={{
+          title: "User Login",
+        }}
+        name='Login'
+        component={LoginScreen}
+      />
     </Stack.Navigator>
   );
 };
