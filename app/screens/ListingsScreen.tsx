@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Card from "../components/Card";
 import colors from "../config/colors";
@@ -23,6 +24,8 @@ const listings = [
 interface IListingScreenProps {}
 
 const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
+
   return (
     <Screen style={styles.screen}>
       <FlatList
@@ -33,6 +36,7 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
             title={item.title}
             subTitle={"$" + item.price}
             image={item.image}
+            onPress={() => navigation.navigate("ListingsDetails", item)}
           />
         )}
       />

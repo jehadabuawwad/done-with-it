@@ -1,9 +1,11 @@
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import ListingEditScreen from "../screens/ListingEditScreen";
-import ListingsScreen from "../screens/ListingsScreen";
+import FeedNavigator from "./FeedNavigator";
 import AccountScreen from "../screens/AccountScreen";
+import ListingButton from "./ListingButton";
 
 interface IAppNavigatorProps {}
 
@@ -15,8 +17,15 @@ const AppNavigator: React.FunctionComponent<IAppNavigatorProps> = () => {
       screenOptions={{
         tabBarActiveBackgroundColor: "tomato",
         tabBarActiveTintColor: "white",
-        tabBarInactiveBackgroundColor: "#eee",
+        tabBarInactiveBackgroundColor: "white",
         tabBarInactiveTintColor: "black",
+        tabBarStyle:
+          Platform.OS == "android"
+            ? {
+                height: 70,
+              }
+            : { height: 90 },
+        headerShown: false,
       }}
     >
       <Tab.Screen
@@ -25,22 +34,23 @@ const AppNavigator: React.FunctionComponent<IAppNavigatorProps> = () => {
             <MaterialCommunityIcons name='home' color={color} size={size} />
           ),
         }}
-        name='Listing'
-        component={ListingsScreen}
+        name='Feed'
+        component={FeedNavigator}
       />
       <Tab.Screen
         options={{
+          tabBarButton: () => <ListingButton />,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='home' color={color} size={size} />
           ),
         }}
-        name='Listing Edit'
+        name='ListingEdit'
         component={ListingEditScreen}
       />
       <Tab.Screen
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name='home' color={color} size={size} />
+            <MaterialCommunityIcons name='account' color={color} size={size} />
           ),
         }}
         name='Account'

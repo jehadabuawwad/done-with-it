@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Image,
   ImageSourcePropType,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import AppText from "./Text";
@@ -14,24 +15,25 @@ interface ICardProps {
   title: string;
   subTitle: string;
   image: ImageSourcePropType;
+  onPress: any;
 }
 
 const Card: React.FunctionComponent<ICardProps> = ({
   title,
   subTitle,
   image,
+  onPress,
 }) => {
   return (
-    <>
+    <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <Image style={styles.image} source={image}></Image>
-
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.subTitle}>{subTitle}</AppText>
         </View>
       </View>
-    </>
+    </TouchableWithoutFeedback>
   );
 };
 
