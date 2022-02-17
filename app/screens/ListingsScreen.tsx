@@ -2,9 +2,11 @@ import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Card from "../components/Card";
-import colors from "../config/colors";
 import Screen from "../components/Screen";
+import Card from "../components/Card";
+
+import rouets from "../config/rouets";
+import colors from "../config/colors";
 
 const listings = [
   {
@@ -36,7 +38,7 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
             title={item.title}
             subTitle={"$" + item.price}
             image={item.image}
-            onPress={() => navigation.navigate("ListingsDetails", item)}
+            onPress={() => navigation.navigate(rouets.ListingsDetails, item)}
           />
         )}
       />

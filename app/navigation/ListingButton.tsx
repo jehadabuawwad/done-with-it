@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableWithoutFeedback } from "react-native";
 
+import rouets from "../config/rouets";
 import colors from "../config/colors";
 
 interface IListingButtonProps {}
@@ -12,7 +13,7 @@ const ListingButton: React.FunctionComponent<IListingButtonProps> = ({}) => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("ListingEdit")}
+      onPress={() => navigation.navigate(rouets.ListingEdit)}
     >
       <View style={styles.container}>
         <MaterialCommunityIcons
