@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { FlatList, StyleSheet } from "react-native";
 
 import useApi from "../hooks/useApi";
 
 import Screen from "../components/Screen";
+import ActivityIndicator from "../components/ActivityIndicator";
 import Card from "../components/Card";
 
 import rouets from "../config/rouets";
@@ -21,13 +22,13 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
 
   useEffect(() => {
     getListsData();
-    setTimeout(() => setLoading(false), 700);
+    setTimeout(() => setLoading(false), 1500);
   }, []);
 
   return (
     <Screen style={styles.screen}>
       {loading ? (
-        <ActivityIndicator animating={loading} size="large" />
+        <ActivityIndicator visible={loading} />
       ) : (
         <FlatList
           data={listings}
