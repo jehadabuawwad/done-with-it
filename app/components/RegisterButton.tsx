@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, TouchableHighlight, View, Text } from "react-native";
 import colors from "../config/colors";
 

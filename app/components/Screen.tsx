@@ -2,6 +2,7 @@ import { StyleSheet, SafeAreaView, View } from "react-native";
 import Constants from "expo-constants";
 
 import colors from "../config/colors";
+import React from "react";
 
 interface IScreenProps {
   style?: any;

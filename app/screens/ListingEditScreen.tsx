@@ -1,6 +1,7 @@
+import React from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-import * as Location from "expo-location";
+
 
 import {
   Form,
@@ -13,6 +14,7 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagPicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+
 
 interface IListingEditScreenProps {}
 

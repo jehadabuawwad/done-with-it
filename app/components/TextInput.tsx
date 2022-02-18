@@ -3,6 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyle from "../config/style";
 import colors from "../config/colors";
+import React from "react";
 
 interface IAppTextInputProps {
   autoCorrect?: boolean;
