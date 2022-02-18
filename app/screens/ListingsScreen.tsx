@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+
+import useApi from "../hooks/useApi";
 
 import Screen from "../components/Screen";
 import Card from "../components/Card";
@@ -8,25 +11,16 @@ import Card from "../components/Card";
 import rouets from "../config/rouets";
 import colors from "../config/colors";
 
-const listings = [
-  {
-    id: 1,
-    title: "Red jacket for sale",
-    price: 100,
-    image: require("../assets/jacket.jpg"),
-  },
-  {
-    id: 2,
-    title: "Couch in great condition",
-    price: 1000,
-    image: require("../assets/couch.jpg"),
-  },
-];
-
 interface IListingScreenProps {}
 
 const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
+  const { getListsData } = useApi();
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const listings = useSelector((state: any) => state.userState.appData.lists);
+
+  useEffect(() => {
+    getListsData();
+  }, []);
 
   return (
     <Screen style={styles.screen}>
@@ -37,7 +31,7 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
           <Card
             title={item.title}
             subTitle={"$" + item.price}
-            image={item.image}
+            image={item.images[0].url}
             onPress={() => navigation.navigate(rouets.ListingsDetails, item)}
           />
         )}

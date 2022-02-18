@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { BASE_URL } from "@env";
+import { HOST } from "@env";
 
 import {
   setUserData,
-  setAppData,
+  setAppDataLists,
   setAccessToken,
   setErrors,
 } from "../features/userState";
@@ -24,7 +26,12 @@ const useApi = () => {
   };
 
   const backEndInstance = axios.create({
-    baseURL: process.env.baseURL,
+    baseURL: BASE_URL,
+    proxy: {
+      protocol: "http",
+      host: HOST,
+      port: 9000,
+    },
   });
 
   const userSignUp = async ({
@@ -35,7 +42,7 @@ const useApi = () => {
   }: userData) => {
     try {
       const response = await backEndInstance.post(
-        `${process.env.BASE_URL}${API.USER_SINGUP}`,
+        `${BASE_URL}${API.USER_SINGUP}`,
         {
           user: {
             first_name,
@@ -54,10 +61,10 @@ const useApi = () => {
     }
   };
 
-  const getData = async () => {
+  const getListsData = async () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
-      dispatch(setAppData(response));
+      dispatch(setAppDataLists(response.data));
     } catch (error) {
       handleError(error);
     }
@@ -68,7 +75,7 @@ const useApi = () => {
     dispatch(setErrors(errors));
   };
 
-  return { API, backEndInstance, userSignUp, getData };
+  return { API, backEndInstance, userSignUp, getListsData };
 };
 
 export default useApi;

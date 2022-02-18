@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   authData: { token: "" },
   userData: {},
-  AppData: {},
+  appData: { lists: [] },
   errors: [],
 };
 
@@ -14,8 +14,8 @@ export const userState = createSlice({
     setUserData: (state, action) => {
       state.userData = action?.payload;
     },
-    setAppData: (state, action) => {
-      state.AppData = action?.payload;
+    setAppDataLists: (state, action) => {
+      state.appData.lists = action?.payload;
     },
     setAccessToken: (state, action) => {
       state.authData.token = action?.payload;
@@ -27,7 +27,7 @@ export const userState = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData, setAppData, setAccessToken, setErrors } =
+export const { setUserData, setAppDataLists, setAccessToken, setErrors } =
   userState.actions;
 
 export default userState.reducer;

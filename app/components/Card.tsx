@@ -14,7 +14,7 @@ import colors from "../config/colors";
 interface ICardProps {
   title: string;
   subTitle: string;
-  image: ImageSourcePropType;
+  image: string;
   onPress: any;
 }
 
@@ -27,7 +27,7 @@ const Card: React.FunctionComponent<ICardProps> = ({
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image style={styles.image} source={image}></Image>
+        <Image style={styles.image} source={{ uri: image }}></Image>
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.subTitle}>{subTitle}</AppText>
