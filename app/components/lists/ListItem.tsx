@@ -12,11 +12,12 @@ import AppText from "../Text";
 import colors from "../../config/colors";
 
 interface IListItemProps {
-  title: string;
-  subTitle: string;
+  title?: string;
+  subTitle?: string;
   image: ImageSourcePropType;
   onPress?: any;
   renderRightActions?: any;
+  IconComponent?: any;
 }
 
 const ListItem: React.FunctionComponent<IListItemProps> = ({
@@ -24,10 +25,12 @@ const ListItem: React.FunctionComponent<IListItemProps> = ({
   title,
   subTitle,
   onPress,
+  IconComponent,
 }) => {
   return (
     <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
       <View style={styles.container}>
+        {IconComponent}
         <Image style={styles.image} source={image} />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>

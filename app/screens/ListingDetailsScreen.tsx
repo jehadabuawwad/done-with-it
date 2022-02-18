@@ -5,18 +5,21 @@ import { ListItem } from "../components/lists";
 
 import colors from "../config/colors";
 
-interface IDetailsScreenProps {}
+interface IDetailsScreenProps {
+  route: any;
+}
 
-const DetailsScreen: React.FunctionComponent<IDetailsScreenProps> = (props) => {
+const ListingDetailsScreen: React.FunctionComponent<IDetailsScreenProps> = ({
+  route,
+}) => {
+  const listing = route.params;
+
   return (
     <View>
-      <Image
-        style={styles.image}
-        source={require("../assets/card_photos/jacket.jpg")}
-      />
+      <Image style={styles.image} source={listing.image} />
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Red Jacket for sale</AppText>
-        <AppText style={styles.price}>100$</AppText>
+        <AppText style={styles.title}>{listing.title}</AppText>
+        <AppText style={styles.price}>${listing.price}</AppText>
         <View style={styles.userContainer}>
           <ListItem
             title='Mosh Hamedani'
@@ -50,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailsScreen;
+export default ListingDetailsScreen;

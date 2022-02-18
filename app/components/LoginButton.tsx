@@ -1,19 +1,20 @@
 import { StyleSheet, TouchableHighlight, View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
+import rouets from "../config/rouets";
 import colors from "../config/colors";
 
 interface IButtonProps {
   title: string;
 }
 
-const handleLogin = () => {};
-
-const LoginButton: React.FunctionComponent<IButtonProps> = ({title}) => {
+const LoginButton: React.FunctionComponent<IButtonProps> = ({ title }) => {
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
   return (
     <TouchableHighlight
       style={styles.button}
       underlayColor={colors.transparance}
-      onPress={() => handleLogin()}
+      onPress={() => navigation.navigate(rouets.LOGIN)}
     >
       <View style={styles.container}>
         <Text style={styles.text}>{title}</Text>
@@ -43,4 +44,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginButton;
-
