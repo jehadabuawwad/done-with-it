@@ -6,6 +6,7 @@ import Screen from "./app/components/Screen";
 import { AppTextInput } from "./app/components/TextInput";
 import Card from "./app/components/Card";
 import Picker from "./app/components/Picker";
+import ImageInput from "./app/components/ImageInput";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -16,19 +17,22 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 interface IDoneWithItProps {}
 
-const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
-  const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Clothing", value: 2 },
-    { label: "Cameras", value: 3 },
-  ];
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
 
+const image = { uri: "../assets/background.jpg" };
+
+const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
+  const [imageUris, setImageUris] = useState<Array<string>>([]);
   const [category, setCategory] = useState(categories[0]);
   const { landscape } = useDeviceOrientation();
+
   // Information about dimenstions of screen
   // console.log(Dimensions.get("screen"));
 
-  const image = { uri: "../assets/background.jpg" };
   return (
     <>
       <Screen>
@@ -47,12 +51,21 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = (props) => {
           placeholder='Category'
           icon='apps'
         />  */}
+        {/* <ImageInput
+          imagSet={imagSet}
+          imageUri={imageUri}
+          onChangeImage={(uri: string) => {
+            setImageUri(uri);
+            setImageSet(!imagSet);
+          }}
+        /> */}
         {/* <WelcomeScreen orintation={landscape} /> */}
         {/* <ViewImageScreen /> */}
         {/* <MessagesScreen /> */}
         {/* <DetailsScreen /> */}
         {/* <LoginScreen /> */}
         {/* <ListingEditScreen /> */}
+        <ListingEditScreen />
       </Screen>
     </>
   );
