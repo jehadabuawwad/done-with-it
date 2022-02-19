@@ -32,38 +32,40 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
   }, []);
 
   return (
-    <Screen>
+    <>
       <ActivityIndicator visible={loading} />
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-      <Form
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values: any) => {
-          userLogIn(values);
-        }}
-        validationSchema={validationSchema}
-      >
-        <FormField
-          name='email'
-          icon='email'
-          autoCorrect={false}
-          autoCapitalize='none'
-          placeholder='Email'
-          keyboardType='email-address'
-          textContentType='emailAddress'
-        />
-        <FormField
-          name='password'
-          icon='lock'
-          autoCorrect={false}
-          autoCapitalize='none'
-          placeholder='Password'
-          secureTextEntry={true}
-          textContentType='password'
-        />
-        {errors && <ErrorMessage error={errors.error} visible={true} />}
-        <SubmitButton title='Login' />
-      </Form>
-    </Screen>
+      <Screen>
+        <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+        <Form
+          initialValues={{ email: "", password: "" }}
+          onSubmit={(values: any) => {
+            userLogIn(values);
+          }}
+          validationSchema={validationSchema}
+        >
+          <FormField
+            name='email'
+            icon='email'
+            autoCorrect={false}
+            autoCapitalize='none'
+            placeholder='Email'
+            keyboardType='email-address'
+            textContentType='emailAddress'
+          />
+          <FormField
+            name='password'
+            icon='lock'
+            autoCorrect={false}
+            autoCapitalize='none'
+            placeholder='Password'
+            secureTextEntry={true}
+            textContentType='password'
+          />
+          {errors && <ErrorMessage error={errors.error} visible={true} />}
+          <SubmitButton title='Login' />
+        </Form>
+      </Screen>
+    </>
   );
 };
 

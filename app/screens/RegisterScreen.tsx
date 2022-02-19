@@ -32,43 +32,45 @@ const RegisterScreen: React.FunctionComponent<IRegisterScreenProps> = () => {
   }, []);
 
   return (
-    <Screen style={styles.container}>
+    <>
       <ActivityIndicator visible={loading} />
-      <Form
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values: any) => {
-          userSignUp(values);
-        }}
-        validationSchema={validationSchema}
-      >
-        {errors && <ErrorMessage error={errors.error} visible={true} />}
-        <FormField
-          autoCorrect={false}
-          icon='account'
-          name='name'
-          placeholder='Name'
-        />
-        <FormField
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='email'
-          keyboardType='email-address'
-          name='email'
-          placeholder='Email'
-          textContentType='emailAddress'
-        />
-        <FormField
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='lock'
-          name='password'
-          placeholder='Password'
-          secureTextEntry
-          textContentType='password'
-        />
-        <SubmitButton title='Register' />
-      </Form>
-    </Screen>
+      <Screen style={styles.container}>
+        <Form
+          initialValues={{ name: "", email: "", password: "" }}
+          onSubmit={(values: any) => {
+            userSignUp(values);
+          }}
+          validationSchema={validationSchema}
+        >
+          {errors && <ErrorMessage error={errors.error} visible={true} />}
+          <FormField
+            autoCorrect={false}
+            icon='account'
+            name='name'
+            placeholder='Name'
+          />
+          <FormField
+            autoCapitalize='none'
+            autoCorrect={false}
+            icon='email'
+            keyboardType='email-address'
+            name='email'
+            placeholder='Email'
+            textContentType='emailAddress'
+          />
+          <FormField
+            autoCapitalize='none'
+            autoCorrect={false}
+            icon='lock'
+            name='password'
+            placeholder='Password'
+            secureTextEntry
+            textContentType='password'
+          />
+          <SubmitButton title='Register' />
+        </Form>
+      </Screen>
+    </>
   );
 };
 const styles = StyleSheet.create({
