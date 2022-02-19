@@ -29,25 +29,29 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
   }, []);
 
   return (
-    <Screen style={styles.screen}>
+    <>
       <ActivityIndicator visible={loading} />
-      {errors.error ? (
-        <ErrorMessage error={errors.error} />
-      ) : (
-        <FlatList
-          data={listings}
-          keyExtractor={(listing) => listing.id.toString()}
-          renderItem={({ item }) => (
-            <Card
-              title={item.title}
-              subTitle={"$" + item.price}
-              image={item.images[0].url}
-              onPress={() => navigation.navigate(rouets.ListingsDetails, item)}
-            />
-          )}
-        />
-      )}
-    </Screen>
+      <Screen style={styles.screen}>
+        {errors.error ? (
+          <ErrorMessage error={errors.error} />
+        ) : (
+          <FlatList
+            data={listings}
+            keyExtractor={(listing) => listing.id.toString()}
+            renderItem={({ item }) => (
+              <Card
+                title={item.title}
+                subTitle={"$" + item.price}
+                image={item.images[0].url}
+                onPress={() =>
+                  navigation.navigate(rouets.ListingsDetails, item)
+                }
+              />
+            )}
+          />
+        )}
+      </Screen>
+    </>
   );
 };
 

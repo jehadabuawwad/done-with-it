@@ -1,5 +1,6 @@
 import React from "react";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 import LoginScreen from "../screens/LoginScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
@@ -27,6 +28,16 @@ const AuthNavigation: React.FunctionComponent<IAuthNavigationProps> = () => {
         }}
         name='Login'
         component={LoginScreen}
+      />
+      <Stack.Screen
+        options={{
+          title: "User Register",
+          headerShown: true,
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: colors.offOrange },
+        }}
+        name='Register'
+        component={RegisterScreen}
       />
     </Stack.Navigator>
   );

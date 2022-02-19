@@ -1,7 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "@env";
 import { HOST } from "@env";
+import jwtDecode from "jwt-decode";
+import { useContext } from "react";
+
+import AuthContext from "../features/context/auth";
 
 import {
   setUserData,
@@ -9,12 +13,11 @@ import {
   setAccessToken,
   setErrors,
 } from "../features/userState";
+
 import { useNavigation } from "@react-navigation/native";
-import rouets from "../config/rouets";
 
 interface userData {
-  first_name: string;
-  last_name: string;
+  name: string;
   email: string;
   password: string;
 }
@@ -31,11 +34,16 @@ interface AppData {
 
 const useApi = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const authContext = useContext(AuthContext);
+
+  if (authContext?.userLoggedIn) {
+    var token = useSelector((state: any) => state.userState.authData.token);
+  }
 
   const API = {
-    USER_SINGUP: "",
-    APP_DATA: "/api/listings",
+    AUTH: "/api/auth",
+    USER: "/api/users",
+    APP_DATA: "/api/my/listings",
   };
 
   const backEndInstance = axios.create({
@@ -45,46 +53,52 @@ const useApi = () => {
       host: HOST,
       port: 9000,
     },
+    headers: {
+      "x-auth-token": token,
+    },
   });
 
-  const userSignUp = async ({
-    first_name,
-    last_name,
-    email,
-    password,
-  }: userData) => {
+  const userSignUp = async ({ name, email, password }: userData) => {
     try {
-      const response = await backEndInstance.post(
-        `${BASE_URL}${API.USER_SINGUP}`,
-        {
-          user: {
-            first_name,
-            last_name,
-            email,
-            password,
-          },
-        }
-      );
-      const token =
-        response?.headers?.authorization?.split(" ")[1] || undefined;
+      const response = await backEndInstance.post(API.USER, {
+        name,
+        email,
+        password,
+      });
 
-      dispatch(setAccessToken(token));
-    } catch (error) {
+      const token = response?.headers["x-auth-token"];
+      identifyUser(token);
+    } catch (error: any) {
+      console.log(error.response.data);
       handleError(error);
     }
+  };
+
+  const userLogIn = async ({ email, password }: userData) => {
+    try {
+      const data = { email, password };
+      const response = await backEndInstance.post(API.AUTH, data);
+      const token = response.data;
+      identifyUser(token);
+    } catch (error: any) {
+      handleError(error);
+    }
+  };
+  const userLogOut = async ({ email, password }: userData) => {
+    identifyUser();
   };
 
   const getListsData = async () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
       dispatch(setAppDataLists(response.data));
+      dispatch(setErrors({}));
     } catch (error) {
       handleError(error);
     }
   };
 
   const addListsData = async (listing: AppData) => {
-    console.log(listing.images);
     const imagesData: { url: string }[] = [];
     listing.images.forEach((element) => {
       imagesData.push({ url: element });
@@ -99,23 +113,43 @@ const useApi = () => {
         images: imagesData,
         location: JSON.stringify(listing.location),
       };
-
       const response = await backEndInstance.post(API.APP_DATA, data);
       return { sucess: true, data: response.data };
     } catch (error: any) {
-      console.log(error.response);
       handleError(error);
     }
   };
 
-  const handleError = async (error: any) => {
-    const errors = error.response;
-
-    await dispatch(setErrors({ error: "Data can't be retrieved" }));
-    () => navigation.navigate(rouets.Welcome);
+  const identifyUser = async (token?: any) => {
+    try {
+      if (token) {
+        dispatch(setAccessToken(token));
+        dispatch(setUserData(jwtDecode(token)));
+        authContext?.setUserLoggedIn(true);
+      } else {
+        dispatch(setAccessToken(""));
+        dispatch(setUserData({}));
+        authContext?.setUserLoggedIn(false);
+      }
+    } finally {
+      dispatch(setErrors({}));
+    }
   };
 
-  return { API, backEndInstance, userSignUp, getListsData, addListsData };
+  const handleError = async (error: any) => {
+    const errorData = error.response.data;
+    await dispatch(setErrors(errorData));
+  };
+  return {
+    API,
+    backEndInstance,
+    identifyUser,
+    userSignUp,
+    userLogIn,
+    userLogOut,
+    getListsData,
+    addListsData,
+  };
 };
 
 export default useApi;

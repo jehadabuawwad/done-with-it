@@ -5,6 +5,8 @@ import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
 import Screen from "../components/Screen";
+import { useSelector } from "react-redux";
+import useApi from "../hooks/useApi";
 
 const menuItems = [
   {
@@ -24,12 +26,14 @@ const menuItems = [
 ];
 
 const AccountScreen: React.FunctionComponent = () => {
+  const userData = useSelector((state: any) => state.userState.userData);
+  const { userLogOut } = useApi();
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title='Mosh Hamedani'
-          subTitle='programmingwithmosh@gmail.com'
+          title={userData.name}
+          subTitle={userData.email}
           image={require("../assets/mosh.jpg")}
         />
       </View>
@@ -56,6 +60,7 @@ const AccountScreen: React.FunctionComponent = () => {
         image={0}
         title='Log Out'
         IconComponent={<Icon name='logout' backgroundColor='#ffe66d' />}
+        onPress={userLogOut}
       />
     </Screen>
   );

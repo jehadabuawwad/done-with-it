@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
+import AppLoading from "expo-app-loading";
+
 import { rootStore } from "./app/features/rootStore";
+import AuthContext from "./app/features/context/auth";
 
 import AppNavigator from "./app/navigation/AppNavigator";
 import NavigationTheme from "./app/navigation/NavigationTheme";
+import AuthNavigation from "./app/navigation/AuthNavigation";
 
 interface IDoneWithItProps {}
 
 const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = () => {
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [ready, setReady] = useState(false);
+
+  const restoreLogin = async () => {
+    await setUserLoggedIn(false);
+  };
+
+  if (!ready) {
+    return (
+      <AppLoading
+        startAsync={restoreLogin}
+        onFinish={() => setReady(true)}
+        onError={console.warn}
+      />
+    );
+  }
+
   return (
-    <NavigationContainer theme={NavigationTheme}>
+    <AuthContext.Provider value={{ userLoggedIn, setUserLoggedIn }}>
       <Provider store={rootStore}>
-        <AppNavigator />
+        <NavigationContainer theme={NavigationTheme}>
+          {!userLoggedIn ? <AuthNavigation /> : <AppNavigator />}
+        </NavigationContainer>
       </Provider>
-    </NavigationContainer>
+    </AuthContext.Provider>
   );
 };
 export default DoneWithIt;
