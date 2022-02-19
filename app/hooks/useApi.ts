@@ -76,7 +76,6 @@ const useApi = () => {
   };
 
   const userLogIn = async ({ email, password }: userData) => {
-    
     try {
       const data = { email, password };
       const response = await backEndInstance.post(API.AUTH, data);
@@ -88,6 +87,11 @@ const useApi = () => {
     } catch (error: any) {
       handleError(error);
     }
+  };
+  const userLogOut = async ({ email, password }: userData) => {
+    dispatch(setAccessToken(""));
+    authContext?.setUserLoggedIn(false);
+    dispatch(setErrors({}));
   };
 
   const getListsData = async () => {
@@ -133,6 +137,7 @@ const useApi = () => {
     backEndInstance,
     userSignUp,
     userLogIn,
+    userLogOut,
     getListsData,
     addListsData,
   };

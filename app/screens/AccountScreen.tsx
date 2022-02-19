@@ -6,6 +6,7 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import Screen from "../components/Screen";
 import { useSelector } from "react-redux";
+import useApi from "../hooks/useApi";
 
 const menuItems = [
   {
@@ -26,6 +27,7 @@ const menuItems = [
 
 const AccountScreen: React.FunctionComponent = () => {
   const userData = useSelector((state: any) => state.userState.userData);
+  const { userLogOut } = useApi();
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -58,6 +60,7 @@ const AccountScreen: React.FunctionComponent = () => {
         image={0}
         title='Log Out'
         IconComponent={<Icon name='logout' backgroundColor='#ffe66d' />}
+        onPress={userLogOut}
       />
     </Screen>
   );
