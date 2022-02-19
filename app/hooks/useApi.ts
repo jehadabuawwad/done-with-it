@@ -32,7 +32,7 @@ interface AppData {
   images: Array<any>;
 }
 
-const useApi = () => {
+const useApi = (onProgress?: Function) => {
   const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
   const { store, get } = cache;
@@ -44,7 +44,7 @@ const useApi = () => {
   const API = {
     AUTH: "/api/auth",
     USER: "/api/users",
-    APP_DATA: "/api/my/listings",
+    APP_DATA: "/api/listings",
   };
 
   const backEndInstance = axios.create({
@@ -57,6 +57,8 @@ const useApi = () => {
     headers: {
       "x-auth-token": token,
     },
+    onUploadProgress: (progress) =>
+      onProgress && onProgress(progress.loaded / progress.total),
   });
 
   const userSignUp = async ({ name, email, password }: userData) => {
@@ -69,7 +71,6 @@ const useApi = () => {
       const user: userData = { email, password };
       userLogIn(user);
     } catch (error: any) {
-      console.log(error.response.data);
       handleError(error);
     }
   };

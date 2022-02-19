@@ -86,7 +86,12 @@ const ListingEditScreen: React.FunctionComponent<
   IListingEditScreenProps
 > = () => {
   const location = useLocation();
-  const { addListsData } = useApi();
+
+  const onProgress = (progress: any) => {
+    console.log(progress);
+  };
+
+  const { addListsData } = useApi(onProgress);
 
   const handleSubmit = async (listing: any, { resetForm }: any) => {
     const response: any = await addListsData({ ...listing, location });
