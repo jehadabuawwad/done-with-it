@@ -17,7 +17,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 interface userData {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -35,7 +35,8 @@ interface AppData {
 const useApi = () => {
   const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
-
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
+  
   if (authContext?.userLoggedIn) {
     var token = useSelector((state: any) => state.userState.authData.token);
   }
@@ -65,9 +66,8 @@ const useApi = () => {
         email,
         password,
       });
-
-      const token = response?.headers["x-auth-token"];
-      identifyUser(token);
+      const user: userData = { email, password };
+      userLogIn(user);
     } catch (error: any) {
       console.log(error.response.data);
       handleError(error);
@@ -78,7 +78,7 @@ const useApi = () => {
     try {
       const data = { email, password };
       const response = await backEndInstance.post(API.AUTH, data);
-      const token = response.data;
+      const token = response.data || response?.headers["x-auth-token"];
       identifyUser(token);
     } catch (error: any) {
       handleError(error);
