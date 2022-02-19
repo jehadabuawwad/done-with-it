@@ -37,9 +37,13 @@ const useApi = () => {
   const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
 
+  if (authContext?.userLoggedIn) {
+    var token = useSelector((state: any) => state.userState.authData.token);
+  }
+
   const API = {
     AUTH: "/api/auth",
-    APP_DATA: "/api/listings",
+    APP_DATA: "/api/my/listings",
   };
 
   const backEndInstance = axios.create({
@@ -48,6 +52,9 @@ const useApi = () => {
       protocol: "http",
       host: HOST,
       port: 9000,
+    },
+    headers: {
+      "x-auth-token": token,
     },
   });
 
