@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import useApi from "../hooks/useApi";
-
+import useLocation from "../hooks/useLocation";
 import {
   Form,
   FormField,
@@ -14,7 +14,8 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 
 import Screen from "../components/Screen";
 import FormImagPicker from "../components/forms/FormImagePicker";
-import useLocation from "../hooks/useLocation";
+import UploadScreen from "./UploadScreen";
+
 interface IListingEditScreenProps {}
 
 const validationSchema = Yup.object().shape({
@@ -86,21 +87,24 @@ const ListingEditScreen: React.FunctionComponent<
   IListingEditScreenProps
 > = () => {
   const location = useLocation();
-
   const onProgress = (progress: any) => {
-    console.log(progress);
+    setProgress(progress);
   };
-
   const { addListsData } = useApi(onProgress);
+  const [uploadVisable, setUploadVisable] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleSubmit = async (listing: any, { resetForm }: any) => {
+    setUploadVisable(true);
     const response: any = await addListsData({ ...listing, location });
     response.sucess && Alert.alert("Sucess");
+    setUploadVisable(false);
     resetForm();
   };
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen progress={progress} visible={uploadVisable} />
       <Form
         initialValues={{
           title: "",
