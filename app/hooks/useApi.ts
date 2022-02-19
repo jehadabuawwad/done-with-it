@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "@env";
 import { HOST } from "@env";
-
+import jwtDecode from "jwt-decode";
 import {
   setUserData,
   setAppDataLists,
@@ -77,7 +77,8 @@ const useApi = () => {
       const response = await backEndInstance.post(API.AUTH, data);
       const token = response.data;
       dispatch(setAccessToken(token));
-      dispatch(setErrors({}))
+      dispatch(setUserData(jwtDecode(token)));
+      dispatch(setErrors({}));
     } catch (error: any) {
       handleError(error);
     }
@@ -87,7 +88,7 @@ const useApi = () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
       dispatch(setAppDataLists(response.data));
-      dispatch(setErrors({}))
+      dispatch(setErrors({}));
     } catch (error) {
       handleError(error);
     }

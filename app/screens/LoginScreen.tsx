@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
@@ -24,7 +24,7 @@ type check = any | null;
 const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
   const { userLogIn } = useApi();
 
-  const errors = useSelector((state:any) => state.userState.errors);
+  const errors = useSelector((state: any) => state.userState.errors);
 
   return (
     <Screen>
