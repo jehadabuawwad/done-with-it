@@ -95,16 +95,19 @@ const ListingEditScreen: React.FunctionComponent<
   const [progress, setProgress] = useState(0);
 
   const handleSubmit = async (listing: any, { resetForm }: any) => {
+    setProgress(0);
     setUploadVisable(true);
-    const response: any = await addListsData({ ...listing, location });
-    response.sucess && Alert.alert("Sucess");
-    setUploadVisable(false);
+    await addListsData({ ...listing, location });
     resetForm();
   };
 
   return (
     <Screen style={styles.container}>
-      <UploadScreen progress={progress} visible={uploadVisable} />
+      <UploadScreen
+        onDone={() => setUploadVisable(false)}
+        progress={progress}
+        visible={uploadVisable}
+      />
       <Form
         initialValues={{
           title: "",
