@@ -3,14 +3,18 @@ import axios from "axios";
 import { BASE_URL } from "@env";
 import { HOST } from "@env";
 import jwtDecode from "jwt-decode";
+import { useContext } from "react";
+
+import AuthContext from "../features/context/auth";
+
 import {
   setUserData,
   setAppDataLists,
   setAccessToken,
   setErrors,
 } from "../features/userState";
+
 import { useNavigation } from "@react-navigation/native";
-import rouets from "../config/rouets";
 
 interface userData {
   first_name: string;
@@ -31,7 +35,7 @@ interface AppData {
 
 const useApi = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const authContext = useContext(AuthContext);
 
   const API = {
     AUTH: "/api/auth",
@@ -72,12 +76,14 @@ const useApi = () => {
   };
 
   const userLogIn = async ({ email, password }: userData) => {
+    
     try {
       const data = { email, password };
       const response = await backEndInstance.post(API.AUTH, data);
       const token = response.data;
       dispatch(setAccessToken(token));
       dispatch(setUserData(jwtDecode(token)));
+      authContext?.setUserLoggedIn(true);
       dispatch(setErrors({}));
     } catch (error: any) {
       handleError(error);
