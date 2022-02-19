@@ -1,80 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import useApi from "../hooks/useApi";
+import Screen from "../components/Screen";
 
 import {
+  ErrorMessage,
   Form,
   FormField,
   SubmitButton,
-  ErrorMessage,
 } from "../components/forms";
-import Screen from "../components/Screen";
+import useApi from "../hooks/useApi";
 import ActivityIndicator from "../components/ActivityIndicator";
-
-interface ILoginScreenProps {}
+import { useSelector } from "react-redux";
 
 const validationSchema = Yup.object().shape({
+  name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-type check = any | null;
-const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
-  const [loading, setLoading] = useState(true);
-  const { userLogIn } = useApi();
+interface IRegisterScreenProps {}
 
+const RegisterScreen: React.FunctionComponent<IRegisterScreenProps> = () => {
+  const { userSignUp } = useApi();
   const errors = useSelector((state: any) => state.userState.errors);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => setLoading(false), 400);
   }, []);
 
   return (
-    <Screen>
+    <Screen style={styles.container}>
       <ActivityIndicator visible={loading} />
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <Form
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ name: "", email: "", password: "" }}
         onSubmit={(values: any) => {
-          userLogIn(values);
+          userSignUp(values);
         }}
         validationSchema={validationSchema}
       >
+        {errors && <ErrorMessage error={errors.error} visible={true} />}
         <FormField
-          name='email'
-          icon='email'
           autoCorrect={false}
+          icon='account'
+          name='name'
+          placeholder='Name'
+        />
+        <FormField
           autoCapitalize='none'
-          placeholder='Email'
+          autoCorrect={false}
+          icon='email'
           keyboardType='email-address'
+          name='email'
+          placeholder='Email'
           textContentType='emailAddress'
         />
         <FormField
-          name='password'
-          icon='lock'
-          autoCorrect={false}
           autoCapitalize='none'
+          autoCorrect={false}
+          icon='lock'
+          name='password'
           placeholder='Password'
-          secureTextEntry={true}
+          secureTextEntry
           textContentType='password'
         />
-        {errors && <ErrorMessage error={errors.error} visible={true} />}
-        <SubmitButton title='Login' />
+        <SubmitButton title='Register' />
       </Form>
     </Screen>
   );
 };
-
 const styles = StyleSheet.create({
-  container: { padding: 20 },
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
+  container: {
+    padding: 10,
   },
 });
-export default LoginScreen;
+export default RegisterScreen;

@@ -17,8 +17,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 interface userData {
-  first_name: string;
-  last_name: string;
+  name: string;
   email: string;
   password: string;
 }
@@ -43,6 +42,7 @@ const useApi = () => {
 
   const API = {
     AUTH: "/api/auth",
+    USER: "/api/users",
     APP_DATA: "/api/my/listings",
   };
 
@@ -58,26 +58,18 @@ const useApi = () => {
     },
   });
 
-  const userSignUp = async ({
-    first_name,
-    last_name,
-    email,
-    password,
-  }: userData) => {
+  const userSignUp = async ({ name, email, password }: userData) => {
     try {
-      const response = await backEndInstance.post(`${BASE_URL}${API.AUTH}`, {
-        user: {
-          first_name,
-          last_name,
-          email,
-          password,
-        },
+      const response = await backEndInstance.post(API.USER, {
+        name,
+        email,
+        password,
       });
-      const token =
-        response?.headers?.authorization?.split(" ")[1] || undefined;
 
-      dispatch(setAccessToken(token));
-    } catch (error) {
+      const token = response?.headers["x-auth-token"];
+      identifyUser(token);
+    } catch (error: any) {
+      console.log(error.response.data);
       handleError(error);
     }
   };
