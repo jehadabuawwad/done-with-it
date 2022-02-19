@@ -39,37 +39,36 @@ const Picker: React.FunctionComponent<IAppPickerProps> = ({
     <>
       <TouchableNativeFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
-          {icon && (
-            <MaterialCommunityIcons
-              name={icon}
-              size={20}
-              color={colors.medium}
-              style={styles.icon}
-            />
-          )}
+          <MaterialCommunityIcons
+            name={selectedItem.icon}
+            size={20}
+            color={colors.medium}
+            style={styles.icon}
+          />
 
           {selectedItem ? (
             <AppText style={styles.text}>{selectedItem.label}</AppText>
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
-          {icon && (
-            <MaterialCommunityIcons
-              name='chevron-down'
-              size={20}
-              color={colors.medium}
-            />
-          )}
+
+          <MaterialCommunityIcons
+            name='chevron-down'
+            size={20}
+            color={colors.medium}
+          />
         </View>
       </TouchableNativeFeedback>
       <Modal visible={modalVisible} animationType='slide'>
         <Screen>
           <Button title='Close' onPress={() => setModalVisible(false)}></Button>
+
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
               <PickerItem
+                icon={item.icon}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);
