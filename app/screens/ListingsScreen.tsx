@@ -12,12 +12,15 @@ import Card from "../components/Card";
 import rouets from "../config/rouets";
 import colors from "../config/colors";
 
+import ErrorMessage from "../components/ErrorMessage";
+
 interface IListingScreenProps {}
 
 const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
   const { getListsData } = useApi();
   const navigation = useNavigation<ProfileScreenNavigationProp>();
   const listings = useSelector((state: any) => state.userState.appData.lists);
+  const errors = useSelector((state: any) => state.userState.errors);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,8 +30,9 @@ const ListingsScreen: React.FunctionComponent<IListingScreenProps> = () => {
 
   return (
     <Screen style={styles.screen}>
-      {loading ? (
-        <ActivityIndicator visible={loading} />
+      <ActivityIndicator visible={loading} />
+      {errors.error ? (
+        <ErrorMessage error={errors.error} />
       ) : (
         <FlatList
           data={listings}

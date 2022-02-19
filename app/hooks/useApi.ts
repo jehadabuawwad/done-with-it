@@ -9,6 +9,8 @@ import {
   setAccessToken,
   setErrors,
 } from "../features/userState";
+import { useNavigation } from "@react-navigation/native";
+import rouets from "../config/rouets";
 
 interface userData {
   first_name: string;
@@ -19,6 +21,7 @@ interface userData {
 
 const useApi = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   const API = {
     USER_SINGUP: "",
@@ -70,9 +73,11 @@ const useApi = () => {
     }
   };
 
-  const handleError = (error: any) => {
-    const errors = error?.response?.data.errors;
-    dispatch(setErrors(errors));
+  const handleError = async (error: any) => {
+    const errors = error.response;
+
+    await dispatch(setErrors({ error: "Data can't be retrieved" }));
+    () => navigation.navigate(rouets.Welcome);
   };
 
   return { API, backEndInstance, userSignUp, getListsData };
