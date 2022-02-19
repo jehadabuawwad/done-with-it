@@ -13,6 +13,7 @@ interface IAppTextInputProps {
   placeholder?: string;
   secureTextEntry?: boolean;
   textContentType?: any;
+  value?: string;
 }
 
 export const AppTextInput: React.FunctionComponent<IAppTextInputProps> = ({

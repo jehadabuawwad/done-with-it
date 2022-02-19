@@ -88,9 +88,10 @@ const ListingEditScreen: React.FunctionComponent<
   const location = useLocation();
   const { addListsData } = useApi();
 
-  const handleSubmit = async (listing: any) => {
+  const handleSubmit = async (listing: any, { resetForm }: any) => {
     const response: any = await addListsData({ ...listing, location });
-    response.sucess&& Alert.alert("Sucess")
+    response.sucess && Alert.alert("Sucess");
+    resetForm();
   };
 
   return (
