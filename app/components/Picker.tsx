@@ -27,12 +27,6 @@ interface IAppPickerProps {
   PickerItemComponent?: React.FunctionComponent;
   width?: string;
 }
-// const categories = [
-//   { label: "Furniture", value: 1 },
-//   { label: "Clothing", value: 2 },
-//   { label: "Cameras", value: 3 },
-// ];
-// const [category, setCategory] = useState(categories[0]);
 const Picker: React.FunctionComponent<IAppPickerProps> = ({
   icon,
   items,
@@ -83,7 +77,7 @@ const Picker: React.FunctionComponent<IAppPickerProps> = ({
                 }}
               />
             )}
-          ></FlatList>
+          />
         </Screen>
       </Modal>
     </>

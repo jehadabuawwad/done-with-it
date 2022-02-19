@@ -19,6 +19,16 @@ interface userData {
   password: string;
 }
 
+interface AppData {
+  listings: any;
+  title: string;
+  price: string;
+  category: any;
+  description: string;
+  location: Object;
+  images: Array<any>;
+}
+
 const useApi = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<ProfileScreenNavigationProp>();
@@ -73,6 +83,24 @@ const useApi = () => {
     }
   };
 
+  const addListsData = async (listing: AppData) => {
+    try {
+      let data = {
+        title: listing.title,
+        price: listing.price,
+        categoryId: listing.category.value,
+        description: listing.description,
+        location: JSON.stringify(listing.location),
+      };
+
+      const response = await backEndInstance.post(API.APP_DATA, data);
+      return { sucess: true, data: response.data };
+    } catch (error: any) {
+      console.log(error.response);
+      handleError(error);
+    }
+  };
+
   const handleError = async (error: any) => {
     const errors = error.response;
 
@@ -80,7 +108,7 @@ const useApi = () => {
     () => navigation.navigate(rouets.Welcome);
   };
 
-  return { API, backEndInstance, userSignUp, getListsData };
+  return { API, backEndInstance, userSignUp, getListsData, addListsData };
 };
 
 export default useApi;
