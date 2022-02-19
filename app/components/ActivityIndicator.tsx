@@ -16,7 +16,7 @@ const ActivityIndicator: React.FunctionComponent<IActivityIndicatorProps> = ({
       autoPlay
       loop
       source={require("../assets/animations/loader.json")}
-    ></AnimatedLottieView>
+    />
   );
 };
 
