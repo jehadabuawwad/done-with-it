@@ -15,6 +15,7 @@ import AppText from "./Text";
 import PickerItem from "./PickerItem";
 
 import colors from "../config/colors";
+import React from "react";
 
 interface IAppPickerProps {
   icon?: any;
@@ -26,7 +27,6 @@ interface IAppPickerProps {
   PickerItemComponent?: React.FunctionComponent;
   width?: string;
 }
-
 const Picker: React.FunctionComponent<IAppPickerProps> = ({
   icon,
   items,
@@ -77,7 +77,7 @@ const Picker: React.FunctionComponent<IAppPickerProps> = ({
                 }}
               />
             )}
-          ></FlatList>
+          />
         </Screen>
       </Modal>
     </>

@@ -1,3 +1,4 @@
+import React from "react";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import LoginScreen from "../screens/LoginScreen";
 

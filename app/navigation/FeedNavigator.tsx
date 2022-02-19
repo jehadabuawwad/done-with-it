@@ -1,3 +1,4 @@
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
@@ -8,7 +9,6 @@ interface IFeedNavigatorProps {}
 const Stack = createStackNavigator();
 
 const FeedNavigator: React.FunctionComponent<IFeedNavigatorProps> = () => {
-
   return (
     <Stack.Navigator
       screenOptions={{

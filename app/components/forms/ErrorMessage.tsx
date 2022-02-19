@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import AppText from "../Text";
 
 import colors from "../../config/colors";
+import React from "react";
 
 interface IErrorMessage {
   error?: Object;

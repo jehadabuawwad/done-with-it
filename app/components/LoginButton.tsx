@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import rouets from "../config/rouets";
 import colors from "../config/colors";
+import React from "react";
 
 interface IButtonProps {
   title: string;
