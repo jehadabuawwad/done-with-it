@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "@env";
 import { HOST } from "@env";
@@ -80,18 +80,13 @@ const useApi = () => {
       const data = { email, password };
       const response = await backEndInstance.post(API.AUTH, data);
       const token = response.data;
-      dispatch(setAccessToken(token));
-      dispatch(setUserData(jwtDecode(token)));
-      authContext?.setUserLoggedIn(true);
-      dispatch(setErrors({}));
+      identifyUser(token);
     } catch (error: any) {
       handleError(error);
     }
   };
   const userLogOut = async ({ email, password }: userData) => {
-    dispatch(setAccessToken(""));
-    authContext?.setUserLoggedIn(false);
-    dispatch(setErrors({}));
+    identifyUser();
   };
 
   const getListsData = async () => {
@@ -119,7 +114,6 @@ const useApi = () => {
         images: imagesData,
         location: JSON.stringify(listing.location),
       };
-
       const response = await backEndInstance.post(API.APP_DATA, data);
       return { sucess: true, data: response.data };
     } catch (error: any) {
@@ -127,14 +121,30 @@ const useApi = () => {
     }
   };
 
+  const identifyUser = async (token?: any) => {
+    try {
+      if (token) {
+        dispatch(setAccessToken(token));
+        dispatch(setUserData(jwtDecode(token)));
+        authContext?.setUserLoggedIn(true);
+      } else {
+        dispatch(setAccessToken(""));
+        dispatch(setUserData({}));
+        authContext?.setUserLoggedIn(false);
+      }
+    } finally {
+      dispatch(setErrors({}));
+    }
+  };
+
   const handleError = async (error: any) => {
     const errorData = error.response.data;
     await dispatch(setErrors(errorData));
   };
-
   return {
     API,
     backEndInstance,
+    identifyUser,
     userSignUp,
     userLogIn,
     userLogOut,

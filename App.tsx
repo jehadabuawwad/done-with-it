@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import AppLoading from "expo-app-loading";
 
 import { rootStore } from "./app/features/rootStore";
@@ -9,7 +9,6 @@ import AuthContext from "./app/features/context/auth";
 import AppNavigator from "./app/navigation/AppNavigator";
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import AuthNavigation from "./app/navigation/AuthNavigation";
-import ActivityIndicator from "./app/components/ActivityIndicator";
 
 interface IDoneWithItProps {}
 
