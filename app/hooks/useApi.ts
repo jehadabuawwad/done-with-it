@@ -84,12 +84,19 @@ const useApi = () => {
   };
 
   const addListsData = async (listing: AppData) => {
+    console.log(listing.images);
+    const imagesData: { url: string }[] = [];
+    listing.images.forEach((element) => {
+      imagesData.push({ url: element });
+    });
+
     try {
       let data = {
         title: listing.title,
         price: listing.price,
         categoryId: listing.category.value,
         description: listing.description,
+        images: imagesData,
         location: JSON.stringify(listing.location),
       };
 
