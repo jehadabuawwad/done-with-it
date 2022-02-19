@@ -14,7 +14,7 @@ import {
   setErrors,
 } from "../features/userState";
 
-import { useNavigation } from "@react-navigation/native";
+import cache from "../utility/cache";
 
 interface userData {
   name?: string;
@@ -35,8 +35,8 @@ interface AppData {
 const useApi = () => {
   const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
-  
+  const { store, get } = cache;
+
   if (authContext?.userLoggedIn) {
     var token = useSelector((state: any) => state.userState.authData.token);
   }
@@ -91,6 +91,7 @@ const useApi = () => {
   const getListsData = async () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
+      store("lists", response.data);
       dispatch(setAppDataLists(response.data));
       dispatch(setErrors({}));
     } catch (error) {

@@ -9,6 +9,7 @@ import AuthContext from "./app/features/context/auth";
 import AppNavigator from "./app/navigation/AppNavigator";
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import AuthNavigation from "./app/navigation/AuthNavigation";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 interface IDoneWithItProps {}
 
@@ -31,13 +32,16 @@ const DoneWithIt: React.FunctionComponent<IDoneWithItProps> = () => {
   }
 
   return (
-    <AuthContext.Provider value={{ userLoggedIn, setUserLoggedIn }}>
-      <Provider store={rootStore}>
-        <NavigationContainer theme={NavigationTheme}>
-          {!userLoggedIn ? <AuthNavigation /> : <AppNavigator />}
-        </NavigationContainer>
-      </Provider>
-    </AuthContext.Provider>
+    <>
+      <OfflineNotice />
+      <AuthContext.Provider value={{ userLoggedIn, setUserLoggedIn }}>
+        <Provider store={rootStore}>
+          <NavigationContainer theme={NavigationTheme}>
+            {!userLoggedIn ? <AuthNavigation /> : <AppNavigator />}
+          </NavigationContainer>
+        </Provider>
+      </AuthContext.Provider>
+    </>
   );
 };
 export default DoneWithIt;

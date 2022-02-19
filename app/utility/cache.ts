@@ -7,7 +7,7 @@ const expiredInMinutes = 5;
 const store = async (key: any, value: any) => {
   const item = { value, timestamp: Date.now() };
   try {
-    await AsyncStorage.setItem(prefix + KeyboardEvent, JSON.stringify(item));
+    await AsyncStorage.setItem(prefix + key, JSON.stringify(item));
   } catch (error: any) {
     console.log(error);
   }
@@ -32,7 +32,10 @@ const get = async (key: any) => {
     }
 
     return item.value;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    
+  }
 };
 
 export default { store, get, isExpired };
