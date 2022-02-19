@@ -34,7 +34,7 @@ const useApi = () => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   const API = {
-    USER_SINGUP: "",
+    AUTH: "/api/auth",
     APP_DATA: "/api/listings",
   };
 
@@ -54,17 +54,14 @@ const useApi = () => {
     password,
   }: userData) => {
     try {
-      const response = await backEndInstance.post(
-        `${BASE_URL}${API.USER_SINGUP}`,
-        {
-          user: {
-            first_name,
-            last_name,
-            email,
-            password,
-          },
-        }
-      );
+      const response = await backEndInstance.post(`${BASE_URL}${API.AUTH}`, {
+        user: {
+          first_name,
+          last_name,
+          email,
+          password,
+        },
+      });
       const token =
         response?.headers?.authorization?.split(" ")[1] || undefined;
 
@@ -74,17 +71,29 @@ const useApi = () => {
     }
   };
 
+  const userLogIn = async ({ email, password }: userData) => {
+    try {
+      const data = { email, password };
+      const response = await backEndInstance.post(API.AUTH, data);
+      const token = response.data;
+      dispatch(setAccessToken(token));
+      dispatch(setErrors({}))
+    } catch (error: any) {
+      handleError(error);
+    }
+  };
+
   const getListsData = async () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
       dispatch(setAppDataLists(response.data));
+      dispatch(setErrors({}))
     } catch (error) {
       handleError(error);
     }
   };
 
   const addListsData = async (listing: AppData) => {
-    console.log(listing.images);
     const imagesData: { url: string }[] = [];
     listing.images.forEach((element) => {
       imagesData.push({ url: element });
@@ -103,19 +112,23 @@ const useApi = () => {
       const response = await backEndInstance.post(API.APP_DATA, data);
       return { sucess: true, data: response.data };
     } catch (error: any) {
-      console.log(error.response);
       handleError(error);
     }
   };
 
   const handleError = async (error: any) => {
-    const errors = error.response;
-
-    await dispatch(setErrors({ error: "Data can't be retrieved" }));
-    () => navigation.navigate(rouets.Welcome);
+    const errorData = error.response.data;
+    await dispatch(setErrors(errorData));
   };
 
-  return { API, backEndInstance, userSignUp, getListsData, addListsData };
+  return {
+    API,
+    backEndInstance,
+    userSignUp,
+    userLogIn,
+    getListsData,
+    addListsData,
+  };
 };
 
 export default useApi;

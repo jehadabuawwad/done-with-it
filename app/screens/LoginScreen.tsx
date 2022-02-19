@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import { Form, FormField, SubmitButton } from "../components/forms";
+import {
+  Form,
+  FormField,
+  SubmitButton,
+  ErrorMessage,
+} from "../components/forms";
 import Screen from "../components/Screen";
+import useApi from "../hooks/useApi";
+import { useSelector } from "react-redux";
 
 interface ILoginScreenProps {}
 
@@ -13,13 +20,20 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(4).label("Password"),
 });
 
+type check = any | null;
 const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
+  const { userLogIn } = useApi();
+
+  const errors = useSelector((state:any) => state.userState.errors);
+
   return (
     <Screen>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <Form
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values: string) => console.log(values)}
+        onSubmit={(values: any) => {
+          userLogIn(values);
+        }}
         validationSchema={validationSchema}
       >
         <FormField
@@ -40,6 +54,7 @@ const LoginScreen: React.FunctionComponent<ILoginScreenProps> = () => {
           secureTextEntry={true}
           textContentType='password'
         />
+        {errors && <ErrorMessage error={errors.error} visible={true} />}
         <SubmitButton title='Login' />
       </Form>
     </Screen>
