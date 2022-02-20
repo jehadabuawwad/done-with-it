@@ -14,10 +14,10 @@ import {
   setErrors,
 } from "../features/userState";
 
-import { useNavigation } from "@react-navigation/native";
+import cache from "../utility/cache";
 
 interface userData {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -32,9 +32,10 @@ interface AppData {
   images: Array<any>;
 }
 
-const useApi = () => {
+const useApi = (onProgress?: Function) => {
   const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
+  const { store, get } = cache;
 
   if (authContext?.userLoggedIn) {
     var token = useSelector((state: any) => state.userState.authData.token);
@@ -43,7 +44,7 @@ const useApi = () => {
   const API = {
     AUTH: "/api/auth",
     USER: "/api/users",
-    APP_DATA: "/api/my/listings",
+    APP_DATA: "/api/listings",
   };
 
   const backEndInstance = axios.create({
@@ -56,6 +57,8 @@ const useApi = () => {
     headers: {
       "x-auth-token": token,
     },
+    onUploadProgress: (progress) =>
+      onProgress && onProgress(progress.loaded / progress.total),
   });
 
   const userSignUp = async ({ name, email, password }: userData) => {
@@ -65,11 +68,9 @@ const useApi = () => {
         email,
         password,
       });
-
-      const token = response?.headers["x-auth-token"];
-      identifyUser(token);
+      const user: userData = { email, password };
+      userLogIn(user);
     } catch (error: any) {
-      console.log(error.response.data);
       handleError(error);
     }
   };
@@ -78,7 +79,7 @@ const useApi = () => {
     try {
       const data = { email, password };
       const response = await backEndInstance.post(API.AUTH, data);
-      const token = response.data;
+      const token = response.data || response?.headers["x-auth-token"];
       identifyUser(token);
     } catch (error: any) {
       handleError(error);
@@ -91,6 +92,7 @@ const useApi = () => {
   const getListsData = async () => {
     try {
       const response = await backEndInstance.get(API.APP_DATA);
+      store("lists", response.data);
       dispatch(setAppDataLists(response.data));
       dispatch(setErrors({}));
     } catch (error) {
@@ -136,9 +138,9 @@ const useApi = () => {
     }
   };
 
-  const handleError = async (error: any) => {
-    const errorData = error.response.data;
-    await dispatch(setErrors(errorData));
+  const handleError =  (error: any) => {
+    const data = error.response.data;
+     dispatch(setErrors(data));
   };
   return {
     API,
