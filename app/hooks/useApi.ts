@@ -138,9 +138,9 @@ const useApi = (onProgress?: Function) => {
     }
   };
 
-  const handleError = async (error: any) => {
-    const errorData = error.response.data;
-    await dispatch(setErrors(errorData));
+  const handleError =  (error: any) => {
+    const data = error.response.data;
+     dispatch(setErrors(data));
   };
   return {
     API,
