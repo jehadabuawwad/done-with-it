@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexShrink: 1,
-    height: 50,
+    height: 70,
   },
 });
 export default PickerItem;

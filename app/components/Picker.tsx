@@ -39,12 +39,14 @@ const Picker: React.FunctionComponent<IAppPickerProps> = ({
     <>
       <TouchableNativeFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
-          <MaterialCommunityIcons
-            name={selectedItem.icon}
-            size={20}
-            color={colors.medium}
-            style={styles.icon}
-          />
+          {selectedItem && (
+            <MaterialCommunityIcons
+              name={selectedItem.icon}
+              size={20}
+              color={colors.medium}
+              style={styles.icon}
+            />
+          )}
 
           {selectedItem ? (
             <AppText style={styles.text}>{selectedItem.label}</AppText>
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? 5 : 0,
   },
   placeholder: { color: colors.medium, flex: 1 },
-  text: { flex: 1 },
+  text: { color: colors.black, flex: 1 },
 });
 
 export default Picker;
